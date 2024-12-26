@@ -75,9 +75,13 @@ To understand the dataset’s most frequent words:
   Displays the most common terms appearing in the **Answer** column.
 
 Below is a sample visualization of the word clouds:
+- Word Cloud for Questions:
+  ![WordCloud Q](https://github.com/user-attachments/assets/65c726c6-7a12-475f-91cd-c9fad423cebb)
 
-![Word Cloud for Questions](![WordCloud](https://github.com/user-attachments/assets/220d860b-eb18-4527-bb76-1891c3460524)
-)
+- Word Cloud for Answers:
+  ![WordCloud A](https://github.com/user-attachments/assets/56f51883-8232-4984-b0da-5eae2838b6ea)
+
+
 
 ---
 
