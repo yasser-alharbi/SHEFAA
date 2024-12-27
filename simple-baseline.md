@@ -1,4 +1,4 @@
-# 2. Baseline
+# Baseline
 
 In this baseline approach, we use **TF-IDF** to encode the training questions and then identify the most similar question for each test input via **cosine similarity**. Due to the size of our validation set (**71,519** entries), we take a sample of **1,000** questions from **X_valid** for efficiency.
 
@@ -110,8 +110,12 @@ In the example above:
 | BERTScore F1 %        | 70.78        |
 
 
-## Conclusion
+## Conclusion  
+This TF-IDF + cosine similarity baseline offers a simple and direct way to retrieve relevant answers, especially when questions share key medical terms. By sampling 1,000 validation questions, we efficiently observed that it can align predictions with true answers in many cases, as shown by the calcium-related example. While it does not capture deeper semantic answers and may produce mismatched answers in complex cases, it remains a valuable starting point for more sophisticated methods. 
 
-*   The baseline method provides a quick way to retrieve a contextually relevant answer by leveraging text similarity.
 
-*   In many cases, as seen in the example, it can produce answers that are relevant to the context and helpful.
+
+
+
+
+
