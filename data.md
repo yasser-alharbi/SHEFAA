@@ -33,10 +33,7 @@ This document provides a concise overview of the **AHQAD** dataset collection, c
 3. **Remove Duplicates**  
    - Dropped rows where `Question` or `Answer` were repeated.
 
-4. **Ensure String Data**  
-   - Kept only rows with string values for questions and answers.
-
-5. **Normalize Text**  
+4. **Normalize Text**  
    - Trimmed leading/trailing spaces.  
    - Replaced newline characters with spaces.  
    - Removed square-bracketed text.  
