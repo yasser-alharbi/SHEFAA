@@ -1,7 +1,7 @@
 # Dataset 
 ## Dataset: AHQAD Arabic Healthcare Q&A Dataset
 
-This document provides a concise overview of the **AHQAD** dataset collection, cleaning, and preparation steps for modeling and visualization. 
+This document provides a concise overview of the **AHQAD** dataset with **csv** format collection, cleaning, and preparation steps for modeling and visualization. 
 
 ---
 
