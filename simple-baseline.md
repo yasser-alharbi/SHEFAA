@@ -1,5 +1,5 @@
-# Baseline
-
+# Simple TF-IDF Retrieval Baseline.
+## Introduction
 In this baseline approach, we use **TF-IDF** to encode the training questions and then identify the most similar question for each test input via **cosine similarity**. Due to the size of our validation set (**71,519** entries), we take a sample of **1,000** questions from **X_valid** for efficiency.
 
 ---
