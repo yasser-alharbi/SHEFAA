@@ -12,7 +12,7 @@ To comprehensively evaluate the SHAFAA Arabic Medical Question Answering system,
 - **Variants**:
   - **BLEU-1**: Unigram overlap.
   - **BLEU-2**: Bigram overlap.
-  - **BLEU-3**: Trigram overlap.
+  - **BLEU-4**: 4-gram overlap.
 - **Purpose**: Measures lexical overlap and phrase-level accuracy in generated responses.
 - **Implementation**: Calculated using the NLTK library with smoothing techniques to handle short text scenarios.
 
@@ -56,7 +56,6 @@ To comprehensively evaluate the SHAFAA Arabic Medical Question Answering system,
 | BLEU       | ✅         | ❌      | ❌        | Lexical overlap and phrase-level accuracy. |
 | ROUGE      | ✅         | ✅      | ✅        | Word-level and sequence-level recall. |
 | BERTScore  | ✅         | ✅      | ✅        | Semantic similarity using embeddings. |
-| BARTScore  | ✅         | ✅      | ✅        | Fluency, coherence, and generation quality. |
 
 ---
 
