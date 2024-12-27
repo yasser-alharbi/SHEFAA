@@ -1,4 +1,4 @@
-# Evaluation Metrics in the SHAFAA Project
+# Evaluation Metrics
 
 ## Introduction
 To comprehensively evaluate the SHAFAA Arabic Medical Question Answering system, we employ a combination of precision-based and semantic evaluation metrics. These metrics assess the system's ability to generate accurate, contextually appropriate, and semantically coherent answers. The evaluation includes BLEU, ROUGE, and BERTScore, offering a multi-faceted perspective on the system's performance.
