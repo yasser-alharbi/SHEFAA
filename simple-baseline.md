@@ -90,6 +90,26 @@ In the example above:
 *   TF-IDF does not capture deeper semantic relationships beyond exact or partially matched terms.
 
 
+## Results
+
+### Table 1: BLEU and ROUGE Scores
+| Metric          | Score (Avg)   |
+|------------------|--------------|
+| BLEU-1          | 0.118        |
+| BLEU-2          | 0.081        |
+| BLEU-4          | 0.036        |
+| ROUGE-1 (F1)    | 0.005        |
+| ROUGE-2 (F1)    | 0.003        |
+| ROUGE-L (F1)    | 0.005        |
+
+### Table 2: BERTScore Results
+| Metric              | Score (Avg)   |
+|----------------------|--------------|
+| BERTScore Precision % | 71.08        |
+| BERTScore Recall %    | 70.86        |
+| BERTScore F1 %        | 70.78        |
+
+
 ## Conclusion
 
 *   The baseline method provides a quick way to retrieve a contextually relevant answer by leveraging text similarity.
