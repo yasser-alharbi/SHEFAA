@@ -149,7 +149,6 @@ BERTScore evaluates the semantic similarity between the generated text and the r
    ![Precision, Recall and F1](https://github.com/yasser-alharbi/SHEFAA/blob/main/images/Precision,%20Recall%20and%20F1%20for%20BERTScore.png)
 
 
----
 
 
 ### Citations
@@ -161,11 +160,14 @@ BERTScore evaluates the semantic similarity between the generated text and the r
 
 ## Summary of Metrics
 
-| Metric     | Precision | Recall | F1-Score | Purpose                               |
-|------------|-----------|--------|----------|---------------------------------------|
-| BLEU       | ✅         | ❌      | ❌        | Lexical overlap and phrase-level accuracy. |
-| ROUGE      | ✅         | ✅      | ✅        | Word-level and sequence-level recall. |
-| BERTScore  | ✅         | ✅      | ✅        | Semantic similarity using embeddings. |
+
+| Metric     | Precision Support | Recall Support | F1-Score Support | Main Focus                                      | Strengths                                                                 |
+|------------|-------------------|----------------|------------------|------------------------------------------------|--------------------------------------------------------------------------|
+| **BLEU**   | ✅                 | ❌             | ❌               | Matches exact words and phrases.                      | Ensures accuracy when exact phrasing is important, such as in text generation in QA.           |
+| **ROUGE**  | ✅                 | ✅             | ✅               | Measures how much of the reference is covered in the generated answer.               | Ensures the answer includes critical content from the reference.                         |
+| **BERTScore** | ✅              | ✅             | ✅               | Assesses semantic similarity using contextual embeddings.                | Captures the semantic correctness of answers, even with rephrased or synonymized text.  |
+
+
 
 
 ---
