@@ -28,6 +28,41 @@ Generated: "The cat is on a mat."
 - Wikipedia: [BLEU](https://en.wikipedia.org/wiki/BLEU)
 
 ---
+## 2. ROUGE Score
+
+### Formal Definition
+ROUGE (Recall-Oriented Understudy for Gisting Evaluation) is a set of metrics that evaluate the quality of generated text by comparing it to reference text. ROUGE focuses on measuring recall, which reflects how much of the reference text is captured by the generated text. Key variants include:
+- **ROUGE-1**: Measures the overlap of unigrams (single words) between the generated and reference text.
+- **ROUGE-2**: Measures the overlap of bigrams (two consecutive words).
+- **ROUGE-L**: Based on the longest common subsequence (LCS) between the generated and reference text.
+
+### Equations
+
+#### ROUGE-N:
+![ROUGE-N Formula](https://github.com/yasser-alharbi/SHEFAA/blob/main/ROUGE-N.png)
+
+**Description**:  
+The ROUGE-N metric calculates the ratio of the number of matching n-grams between the generated text and the reference text to the total number of n-grams in the reference text. It emphasizes how much content from the reference is reflected in the generated text.
+
+- **Matching n-grams**: Number of n-grams in the reference that also appear in the generated text.
+- **Total n-grams in the reference**: The total number of n-grams in the reference text.
+
+---
+
+#### ROUGE-L:
+![ROUGE-L Formula](https://github.com/yasser-alharbi/SHEFAA/blob/main/ROUGE-L.png)
+
+**Description**:  
+The ROUGE-L metric is based on the longest common subsequence (LCS), which represents the longest sequence of tokens that appear in both the generated and reference text in the same order. ROUGE-L considers both precision and recall through the F-measure, which balances the two using a weighting parameter \( \beta \).
+
+- \( P \): Precision = \(\frac{\text{LCS length}}{\text{Total tokens in the generated text}}\)
+- \( R \): Recall = \(\frac{\text{LCS length}}{\text{Total tokens in the reference text}}\)
+- \( F_\beta \): A harmonic mean of Precision and Recall, controlled by \( \beta \) (usually set to 1 for equal weight).
+
+---
+
+These equations demonstrate how ROUGE measures text overlap, making it an effective evaluation metric for tasks like text summarization, translation, and question answering.
+
 
 ## 2. ROUGE Score
 
@@ -36,6 +71,9 @@ ROUGE (Recall-Oriented Understudy for Gisting Evaluation) measures recall by com
 - ROUGE-1: Overlap of unigrams.
 - ROUGE-2: Overlap of bigrams.
 - ROUGE-L: Longest common subsequence.
+
+![image alt](https://github.com/yasser-alharbi/SHEFAA/blob/main/ROUGE-N.png)
+![image alt](https://github.com/yasser-alharbi/SHEFAA/blob/main/ROUGE-L.png)
 
 ### Example
 Reference: "The quick brown fox jumps."
