@@ -53,7 +53,7 @@ ROUGE (Recall-Oriented Understudy for Gisting Evaluation) is a set of metrics th
 ### Equations
 
 #### ROUGE-N:
-![ROUGE-N Formula](https://github.com/yasser-alharbi/SHEFAA/blob/main/ROUGE-N.png)
+![ROUGE-N Formula](https://github.com/yasser-alharbi/SHEFAA/blob/main/images/ROUGE-N.png)
 
 **Description**:  
 The ROUGE-N metric calculates the ratio of the number of matching n-grams between the generated text and the reference text to the total number of n-grams in the reference text. It emphasizes how much content from the reference is reflected in the generated text.
@@ -64,18 +64,18 @@ The ROUGE-N metric calculates the ratio of the number of matching n-grams betwee
 ---
 
 #### ROUGE-L:
-![ROUGE-L Formula](https://github.com/yasser-alharbi/SHEFAA/blob/main/ROUGE-L.png)
+![ROUGE-L Formula](https://github.com/yasser-alharbi/SHEFAA/blob/main/images/ROUGE-L.png)
 
 **Description**:  
 The ROUGE-L metric is based on the longest common subsequence (LCS), which represents the longest sequence of tokens that appear in both the generated and reference text in the same order. ROUGE-L considers both precision and recall through the F-measure, which balances the two using a weighting parameter \( \beta \).
 
 - \( P \): Precision
 
-![image alt](https://github.com/yasser-alharbi/SHEFAA/blob/main/Recall.png)
+![image alt](https://github.com/yasser-alharbi/SHEFAA/blob/main/images/Recall.png)
 
 - \( R \): Recall
 
-![image alt](https://github.com/yasser-alharbi/SHEFAA/blob/main/Recall.png)
+![image alt](https://github.com/yasser-alharbi/SHEFAA/blob/main/images/Recall.png)
 
 - \( F1 \): A harmonic mean of Precision and Recall, controlled by beta (usually set to 1 for equal weight).
 
@@ -133,12 +133,12 @@ BERTScore evaluates the semantic similarity between the generated text and the r
 2. **Pairwise Cosine Similarity**:  
    The cosine similarity is computed pairwise between each token in the generated text and every token in the reference text. This results in a similarity matrix that highlights how semantically similar the tokens are.
 
-   ![Pairwise Cosine Similarity](https://github.com/yasser-alharbi/SHEFAA/blob/main/Pairwise%20Cosine%20Similarity.png)
+   ![Pairwise Cosine Similarity](https://github.com/yasser-alharbi/SHEFAA/blob/main/images/Pairwise%20Cosine%20Similarity.png)
 
 3. **Maximum Similarity**:  
    For each token in the generated text, the maximum similarity with any token in the reference text is calculated (and vice versa). This ensures that each word contributes its best semantic match.
 
-   ![Maximum Similarity](https://github.com/yasser-alharbi/SHEFAA/blob/main/Maximum%20Similarity.png)
+   ![Maximum Similarity](https://github.com/yasser-alharbi/SHEFAA/blob/main/images/Maximum%20Similarity.png)
 
 5. **Precision, Recall and F1**:  
    - **Precision**: The average of the maximum similarities for tokens in the generated text.
@@ -146,7 +146,7 @@ BERTScore evaluates the semantic similarity between the generated text and the r
    - **F1**: The harmonic mean of Precision and Recall, balancing their contributions
   
   
-   ![Precision, Recall and F1](https://github.com/yasser-alharbi/SHEFAA/blob/main/Precision,%20Recall%20and%20F1%20for%20BERTScore.png)
+   ![Precision, Recall and F1](https://github.com/yasser-alharbi/SHEFAA/blob/main/images/Precision,%20Recall%20and%20F1%20for%20BERTScore.png)
 
 
 ---
