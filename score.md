@@ -161,64 +161,21 @@ BERTScore evaluates the semantic similarity between the generated text and the r
 ## Summary of Metrics
 
 
-| Metric       | Precision Support | Recall Support | F1-Score Support | Main Focus                                      | Why?                                                                                   |
-|--------------|-------------------|----------------|------------------|------------------------------------------------|----------------------------------------------------------------------------------------|
-| **BLEU**     | ✅                 | ❌             | ❌               | Measures n-gram precision for exact word and phrase matching.                         | Best for fact-based QA requiring exact wording, but struggles with paraphrased or semantic answers. |
-| **ROUGE**    | ✅                 | ✅             | ✅               | Measures how much of the reference is covered in the generated answer.               | Useful for recall-focused tasks, ensuring all key points from the reference are included. |
-| **BERTScore**| ✅                 | ✅             | ✅               | Assesses semantic similarity using contextual embeddings.                             | Ideal for conversational or paraphrased QA, as it focuses on semantic correctness and meaning.        |
-
-
 | Metric       | Precision Support | Recall Support | F1-Score Support | Main Focus                                      | Use Case for QA                                                                      | Scoring Interpretation                                                                     |
 |--------------|-------------------|----------------|------------------|------------------------------------------------|--------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
 | **BLEU**     | ✅                 | ❌             | ❌               | Measures n-gram precision for exact word and phrase matching.                         | Best for fact-based QA requiring exact wording, such as in legal or medical contexts. | Higher BLEU scores indicate better performance, with `1.0` being a perfect match.          |
-| **ROUGE**    | ✅                 | ✅             | ✅               | Measures how much of the reference is covered in the generated answer.               | Useful for recall-focused QA tasks, ensuring all key points from the reference are included. | Higher ROUGE scores indicate better performance, reflecting greater overlap with the reference. |
+| **ROUGE**    | ✅                 | ✅             | ✅               | Measures how much of the reference is covered in the generated answer.               | Useful for recall-focused QA tasks, ensuring all key points from the reference are included. | Higher ROUGE scores indicate better performance, reflecting greater overlap with the reference, with `1.0` being a perfect match. |
 | **BERTScore**| ✅                 | ✅             | ✅               | Assesses semantic similarity using contextual embeddings.                             | Ideal for generative or conversational QA, where meaning matters more than exact wording. | Higher BERTScore values indicate better semantic similarity, with `1.0` representing strong alignment. |
 
 
 
 ---
 
-
-## Choosing the Best Metric for QA Answer Generation
-
-For a **QA answer generation task**, the best metric depends on the type of answers your system produces and the evaluation priorities. Here’s a breakdown of each metric:
-
----
-
-### 1. BLEU  
-**Best for:** Fact-based QA tasks with short, precise answers where exact phrasing is important.
-
-**Scoring Interpretation:** Higher BLEU scores indicate better performance, with a score of `1.0` representing a perfect match.
-
-**For QA:** BLEU is useful only if your task demands exact wording. For example, in legal or medical QA tasks, precision is key.
-
----
-
-### 2. ROUGE  
-**Best for:** Long-form QA answers where recall (including all important information) is key.
-
-**Scoring Interpretation:** Higher ROUGE scores indicate better performance, as they reflect greater overlap between the generated and reference answers.
-
-**For QA:** ROUGE is useful if your task prioritizes covering all key points in the reference answer. However, it doesn’t handle semantic variations as well as other metrics.
-
----
-
-### 3. BERTScore  
-**Best for:** Generative QA systems that prioritize meaning and semantic similarity.
-
-**Scoring Interpretation:** Higher BERTScore values indicate better semantic similarity, with scores closer to `1.0` representing strong alignment.
-
-**For QA:** BERTScore is the most appropriate metric for QA systems that generate conversational answers, where meaning matters more than exact wording.
-
----
-
 ## Final Recommendation
 
-For your **QA answer generation task**, **BERTScore** is the best choice because it aligns with the goal of generating semantically correct answers. It works particularly well
-
----
-
 ### Metric Ranking for QA Answer Generation
+
+For your **QA answer generation task**, **BERTScore** is the best choice because it aligns with the goal of generating semantically correct answers.
 
 | Rank  | Metric       |
 |-------|--------------|
