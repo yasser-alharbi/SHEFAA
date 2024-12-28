@@ -168,6 +168,14 @@ BERTScore evaluates the semantic similarity between the generated text and the r
 | **BERTScore**| ✅                 | ✅             | ✅               | Assesses semantic similarity using contextual embeddings.                             | Ideal for conversational or paraphrased QA, as it focuses on semantic correctness and meaning.        |
 
 
+| Metric       | Precision Support | Recall Support | F1-Score Support | Main Focus                                      | Use Case for QA                                                                      | Scoring Interpretation                                                                     |
+|--------------|-------------------|----------------|------------------|------------------------------------------------|--------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
+| **BLEU**     | ✅                 | ❌             | ❌               | Measures n-gram precision for exact word and phrase matching.                         | Best for fact-based QA requiring exact wording, such as in legal or medical contexts. | Higher BLEU scores indicate better performance, with `1.0` being a perfect match.          |
+| **ROUGE**    | ✅                 | ✅             | ✅               | Measures how much of the reference is covered in the generated answer.               | Useful for recall-focused QA tasks, ensuring all key points from the reference are included. | Higher ROUGE scores indicate better performance, reflecting greater overlap with the reference. |
+| **BERTScore**| ✅                 | ✅             | ✅               | Assesses semantic similarity using contextual embeddings.                             | Ideal for generative or conversational QA, where meaning matters more than exact wording. | Higher BERTScore values indicate better semantic similarity, with `1.0` representing strong alignment. |
+
+
+
 ---
 
 
