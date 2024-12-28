@@ -1,6 +1,6 @@
-# Evaluation Metrics Documentation
+# Evaluation Metrics
 
-This document describes the three evaluation metrics used in our project: BLEU, ROUGE, and BERTScore. Each metric has a formal definition, relevant citations, an example calculation, and instructions for running the evaluation script.
+To comprehensively evaluate the SHAFAA Arabic Medical Question Answering system, we employ a combination of precision-based and semantic evaluation metrics. These metrics assess the system's ability to generate accurate, contextually appropriate, and semantically coherent answers. The evaluation includes BLEU, ROUGE, and BERTScore, offering a multi-faceted perspective on the system's performance.
 
 ---
 
@@ -38,7 +38,7 @@ It is defined as:
 
 
 ### Citations
-- geeksforgeeks: [Understanding BLEU and ROUGE score](https://www.geeksforgeeks.org/understanding-bleu-and-rouge-score-for-nlp-evaluation/)
+- GeeksforGeeks: [Understanding BLEU and ROUGE score](https://www.geeksforgeeks.org/understanding-bleu-and-rouge-score-for-nlp-evaluation/)
 - Wikipedia: [BLEU](https://en.wikipedia.org/wiki/BLEU)
 
 ---
@@ -125,12 +125,9 @@ BERTScore evaluates the semantic similarity between the generated text and the r
 ---
 
 ### Example: BERTScore Calculation
-**Reference Text**: "The weather is cold today."  
-**Generated Text**: "It is freezing today."
 
 1. **Contextual Embeddings**:  
    Each word in the reference and generated text is represented as a high-dimensional vector using a pre-trained BERT model. These embeddings encode the semantic meaning of words in their context.
-
 
 
 2. **Pairwise Cosine Similarity**:  
@@ -151,31 +148,37 @@ BERTScore evaluates the semantic similarity between the generated text and the r
   
    ![Precision, Recall and F1](https://github.com/yasser-alharbi/SHEFAA/blob/main/Precision,%20Recall%20and%20F1%20for%20BERTScore.png)
 
-**Result**:  
-- Precision = `0.85`  
-- Recall = `0.83`  
-- F1 Score = `0.84`
+
+---
 
 
 ### Citations
-- Zhang, T., et al., 2020. "BERTScore: Evaluating Text Generation with BERT." [Link](https://arxiv.org/abs/1904.09675)
+- Medium: [BERTScore Explained in 5 minutes](https://medium.com/@abonia/bertscore-explained-in-5-minutes-0b98553bfb71)
+- YouTube: [BERTScore: Evaluating Text Generation with BERT](https://www.youtube.com/watch?v=Nq4VKXhumSY&t=34s)
 
 ---
 
-This markdown integrates the images and detailed step-by-step explanations to provide a comprehensive understanding of BERTScore.
+
+## Summary of Metrics
+
+| Metric     | Precision | Recall | F1-Score | Purpose                               |
+|------------|-----------|--------|----------|---------------------------------------|
+| BLEU       | ✅         | ❌      | ❌        | Lexical overlap and phrase-level accuracy. |
+| ROUGE      | ✅         | ✅      | ✅        | Word-level and sequence-level recall. |
+| BERTScore  | ✅         | ✅      | ✅        | Semantic similarity using embeddings. |
 
 
 ---
+
 
 ## Instructions to Run the Evaluation Script
 
 ### Prerequisites
-- Python 3.x
-- Required libraries: `nltk`, `rouge-score`, `bert-score`
+- Required downloads libraries: `nltk`, `rouge-score`, `bert-score`
 - Files:
   - `1000_Sample_Prediction.txt`: Generated text.
   - `1000_Sample_Reference.txt`: Reference text.
 
 ### Command to Run
 ```bash
-python score.py 1000_Sample_Prediction.txt 1000_Sample_Reference.txt
+python score.py --predictions 1000_Sample_Prediction.txt --references 1000_Sample_Reference.txt
