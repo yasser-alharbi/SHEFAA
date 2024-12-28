@@ -55,8 +55,10 @@ The ROUGE-N metric calculates the ratio of the number of matching n-grams betwee
 **Description**:  
 The ROUGE-L metric is based on the longest common subsequence (LCS), which represents the longest sequence of tokens that appear in both the generated and reference text in the same order. ROUGE-L considers both precision and recall through the F-measure, which balances the two using a weighting parameter \( \beta \).
 
-- \( P \): Precision = \(\frac{\text{LCS length}}{\text{Total tokens in the generated text}}\)
-- \( R \): Recall = \(\frac{\text{LCS length}}{\text{Total tokens in the reference text}}\)
+- \( P \): Precision
+![image alt](https://github.com/yasser-alharbi/SHEFAA/blob/main/Recall.png)
+- \( R \): Recall
+![image alt](https://github.com/yasser-alharbi/SHEFAA/blob/main/Recall.png)
 - \( F_\beta \): A harmonic mean of Precision and Recall, controlled by \( \beta \) (usually set to 1 for equal weight).
 
 ---
