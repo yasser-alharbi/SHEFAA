@@ -1,4 +1,5 @@
 import nltk
+nltk.download('punkt_tab')
 from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
 from rouge_score import rouge_scorer
 from bert_score import score
