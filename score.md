@@ -168,6 +168,54 @@ BERTScore evaluates the semantic similarity between the generated text and the r
 | **BERTScore** | ✅              | ✅             | ✅               | Assesses semantic similarity using contextual embeddings.                | Captures the semantic correctness of answers, even with rephrased or synonymized text.  |
 
 
+---
+
+
+## Choosing the Best Metric for QA Answer Generation
+
+For a **QA answer generation task**, the best metric depends on the type of answers your system produces and the evaluation priorities. Here’s a breakdown of each metric:
+
+---
+
+### 1. BLEU  
+**Best for:** Fact-based QA tasks with short, precise answers where exact phrasing is important.  
+
+**For QA:** BLEU is useful only if your task demands exact wording. For example, in legal or medical QA tasks, precision is key.
+
+---
+
+### 2. ROUGE  
+**Best for:** Long-form QA answers where recall (including all important information) is key.  
+
+**For QA:** ROUGE is useful if your task prioritizes covering all key points in the reference answer. However, it doesn’t handle semantic variations as well as other metrics.
+
+---
+
+### 3. BERTScore  
+**Best for:** Generative QA systems that prioritize meaning and semantic similarity.  
+
+**For QA:** BERTScore is the most appropriate metric for QA systems that generate conversational answers, where meaning matters more than exact wording.
+
+---
+
+## Final Recommendation
+
+For your **QA answer generation task**, **BERTScore** is the best choice because it aligns with the goal of generating semantically correct answers. It works particularly well
+
+
+If your task also requires ensuring all key points from the reference answer are included (e.g., in long-form answers)
+
+---
+
+### Metric Ranking for QA Answer Generation
+
+| Rank  | Metric       | Why?                                                                                   |
+|-------|--------------|----------------------------------------------------------------------------------------|
+| 1st   | **BERTScore**| Best for assessing semantic similarity and meaning, especially for conversational QA.  |
+| 2nd   | **ROUGE**    | Useful for evaluating recall and ensuring key points are covered in the answer.        |
+| 3rd   | **BLEU**     | Suitable for fact-based QA tasks requiring exact wording, but limited for paraphrasing.|
+
+
 
 
 ---
