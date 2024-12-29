@@ -76,8 +76,8 @@ def main(args):
     test_df = clean_data(test_df)
     
     # Generate predictions for validation and test sets
-    valid_predictions = generate_predictions(train_df['Question'], train_df['Answer'], valid_df['Question'])
-    test_predictions = generate_predictions(train_df['Question'], train_df['Answer'], test_df['Question'])
+    valid_predictions = generate_predictions(train_df['input_text'], train_df['Answer'], valid_df['input_text'])
+    test_predictions = generate_predictions(train_df['input_text'], train_df['Answer'], test_df['input_text'])
     
     # Evaluate predictions on validation and test sets
     print("Evaluating Validation Set:")
