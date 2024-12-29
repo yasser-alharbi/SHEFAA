@@ -110,6 +110,21 @@ In the example above:
 | BERTScore F1 %        | 70.78        |
 
 
+## Instructions to Run the Evaluation Script
+
+### Prerequisites
+- Required libraries: `nltk`, `rouge-score`, `bert-score`
+- Files:
+  - `train.csv`: Training dataset containing `Question` and `Answer` columns.
+  - `valid.csv`: Validation dataset containing `Question` and `Answer` columns.
+  - `test.csv`: Test dataset containing `Question` and `Answer` columns.
+
+### Command to Run
+```bash
+python simple_baseline.py --train train.csv --valid valid.csv --test test.csv
+```
+
+
 ## Conclusion  
 This TF-IDF + cosine similarity baseline offers a simple and direct way to retrieve relevant answers, especially when questions share key medical terms. By sampling 1,000 validation questions, we efficiently observed that it can align predictions with true answers in many cases, as shown by the calcium-related example. While it does not capture deeper semantic answers and may produce mismatched answers in complex cases, it remains a valuable starting point for more sophisticated methods. 
 
