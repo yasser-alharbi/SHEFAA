@@ -54,9 +54,9 @@ The final cleaned data shape was approximately **715,187** rows and **3** column
      `الإجابة: {Answer}`
 
 3. **Train/Test/Validation Split**  
-   - **Train**: 80% of the data  
-   - **Test**: 10% of the data  
-   - **Validation**: 10% of the data
+   - **Train**: 80% of the data  (572,149)
+   - **Test**: 10% of the data  (71,519)
+   - **Validation**: 10% of the data  (71,519)
 
 ---
 
