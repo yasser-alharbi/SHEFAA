@@ -8,11 +8,12 @@ from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
 from rouge_score import rouge_scorer
 from bert_score import score
 
-nltk.download('punkt')
+# Download NLTK tokenizer if needed
+nltk.download('punkt_tab')  # or nltk.download('punkt') if "punkt_tab" isn't recognized
 
 # Clean and preprocess data
 def clean_data(df):
-    df['Question'] = df['Question'].str.strip().str.replace(r'[^\w\s]', '', regex=True)
+    df['input_text'] = df['input_text'].str.strip().str.replace(r'[^\w\s]', '', regex=True)
     df['Answer'] = df['Answer'].str.strip().str.replace(r'[^\w\s]', '', regex=True)
     return df
 
@@ -41,9 +42,15 @@ def evaluate(predictions, references):
     for ref, pred in zip(references, predictions):
         ref_tokens = nltk.word_tokenize(ref)
         pred_tokens = nltk.word_tokenize(pred)
-        bleu_scores["BLEU-1"].append(sentence_bleu([ref_tokens], pred_tokens, weights=(1, 0, 0, 0), smoothing_function=smoothie))
-        bleu_scores["BLEU-2"].append(sentence_bleu([ref_tokens], pred_tokens, weights=(0.5, 0.5, 0, 0), smoothing_function=smoothie))
-        bleu_scores["BLEU-4"].append(sentence_bleu([ref_tokens], pred_tokens, weights=(0.25, 0.25, 0.25, 0.25), smoothing_function=smoothie))
+        bleu_scores["BLEU-1"].append(
+            sentence_bleu([ref_tokens], pred_tokens, weights=(1, 0, 0, 0), smoothing_function=smoothie)
+        )
+        bleu_scores["BLEU-2"].append(
+            sentence_bleu([ref_tokens], pred_tokens, weights=(0.5, 0.5, 0, 0), smoothing_function=smoothie)
+        )
+        bleu_scores["BLEU-4"].append(
+            sentence_bleu([ref_tokens], pred_tokens, weights=(0.25, 0.25, 0.25, 0.25), smoothing_function=smoothie)
+        )
     
     # ROUGE
     rouge_scorer_obj = rouge_scorer.RougeScorer(['rouge1', 'rouge2', 'rougeL'], use_stemmer=True)
@@ -54,8 +61,20 @@ def evaluate(predictions, references):
         rouge_scores["ROUGE-2"].append(scores['rouge2'].fmeasure)
         rouge_scores["ROUGE-L"].append(scores['rougeL'].fmeasure)
     
-    # BERTScore
-    P, R, F1 = score(predictions, references, lang='ar')
+    # BERTScore (UPDATED SECTION)
+    # Convert None or empty references/predictions to ""
+    cleaned_predictions = [p if p else "" for p in predictions]
+    cleaned_references = [r if r else "" for r in references]
+
+    P, R, F1 = score(
+        cleaned_predictions,
+        cleaned_references,
+        lang='ar',
+        model_type='distilbert-base-multilingual-cased',  # smaller multilingual model
+        idf=False,
+        rescale_with_baseline=False,
+        batch_size=8  # smaller batches to avoid large in-memory operations
+    )
     bert_scores = {
         "BERTScore Precision": P.mean().item(),
         "BERTScore Recall": R.mean().item(),
@@ -93,7 +112,9 @@ def main(args):
     print("Test BERTScore:", test_bert)
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Evaluate baseline model with BLEU, ROUGE, and BERTScore on validation and test datasets.")
+    parser = argparse.ArgumentParser(
+        description="Evaluate baseline model with BLEU, ROUGE, and BERTScore on validation and test datasets."
+    )
     parser.add_argument("--train", type=str, required=True, help="Path to the training dataset.")
     parser.add_argument("--valid", type=str, required=True, help="Path to the validation dataset.")
     parser.add_argument("--test", type=str, required=True, help="Path to the test dataset.")
