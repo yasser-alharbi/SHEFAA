@@ -1,7 +1,7 @@
 # Fine-Tuning LLMs for Reliable Medical Question-Answering Services
 
 **Paper Reference:**
-Anaissi, Ali et al., *“Fine-Tuning LLMs for Reliable Medical Question-Answering Services.”* (2024)
+[Anaissi, Ali et al., *“Fine-Tuning LLMs for Reliable Medical Question-Answering Services.”* (2024)](https://arxiv.org/pdf/2410.16088v1)
 
 ---
 
@@ -14,7 +14,7 @@ The work highlights how these specialized fine-tuning methods can ensure **fast,
 
 ---
 
-## Dataset (Short)
+## Dataset 
 They compile multiple medical QA resources:
 - **Medical Meadow** (from medAlpaca, known medical databases)
 - **Anki Flashcards** (rephrased with GPT-3.5)
