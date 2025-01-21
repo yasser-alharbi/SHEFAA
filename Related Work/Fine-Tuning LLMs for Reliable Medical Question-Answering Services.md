@@ -42,6 +42,3 @@ Models like **LLaMA2** and **Mistral** are fine-tuned with these techniques. The
 - Gains exceed **100%** on certain QA metrics under specific conditions, demonstrating strong potential for more accurate and rich medical answers.
 - Conclude these synergy-based methods (fine-tuning + retrieval) can significantly **boost** LLM performance in medical QA, even on limited data.
 
-**Implications for an Arabic Medical Q&A**:  
-- Parameter-efficient adaptation (rsDoRA+) is crucial for specialized domains.
-- Retrieval-based generation (ReRAG) could provide on-demand Arabic medical knowledge and reduce hallucinations in Arabic QA tasks.
