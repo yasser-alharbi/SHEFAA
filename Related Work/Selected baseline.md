@@ -1,5 +1,0 @@
-## Justification for Selecting *Fine-Tuning LLMs for Reliable Medical Question-Answering Services*
-
-We chose to implement the baseline from *Fine-Tuning LLMs for Reliable Medical Question-Answering Services* due to its close alignment with the objectives of our project, particularly the need for reliable and domain-specific Arabic medical question-answering. The introduction of rsDoRA+ and ReRAG in the paper provides innovative, efficient methodologies that can be adapted to Arabic datasets, enhancing both accuracy and efficiency. These methods also address common challenges like hallucination and irrelevance, making them particularly suitable for building a trustworthy system.
-
-Additionally, *Fine-Tuning LLMs for Reliable Medical Question-Answering Services* offers a clear pathway to combine fine-tuning with retrieval-augmented strategies, which aligns with our goal to create a robust, scalable Arabic medical Q&A model. Its emphasis on parameter-efficient tuning and real-world reliability makes it the most practical choice for our implementation in Milestone 3.
