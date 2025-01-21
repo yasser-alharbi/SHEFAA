@@ -37,8 +37,3 @@ They test on:
 - **GenQA** outperforms the best AS2 approach by up to 32% in accuracy, as judged by human annotators.
 - The generative approach fuses partial info from multiple retrieved sentences, yielding shorter, more natural answers.
 - Automatic metrics like BLEU and ROUGE did **not** correlate well with correctness—human review is necessary.
-
-**Implications for an Arabic Medical Q&A**:
-- Combining “**retrieve** then **generate**” can significantly improve clarity and correctness vs. just returning raw snippet text.
-- Encourages a two-step approach: rank multiple candidate Arabic medical snippets, then unify them into a succinct, user-friendly answer—important for patient-facing systems.
-- Reiterates that **human-based** evaluations remain crucial in sensitive medical contexts.
