@@ -45,8 +45,4 @@ They truncate longer answers (300 tokens for MedQuAD, 150 for Icliniq) to keep t
 - Data augmentation with multiple sources (MedQuAD + Icliniq) improves fine-tuned model performance, mitigating hallucinations somewhat.
 - **User/doctor surveys** reveal GPT-based models often appear more factual, though they can be verbose; smaller models hallucinate frequently but are more controllable.
 
-**Implications for an Arabic Medical Q&A**:
-- Emphasizes *prompt engineering*: retrieving relevant Q&A pairs might reduce hallucinations and ensure domain accuracy.
-- Shows how **domain-labeled** question types can direct context retrieval and produce more tailored Arabic answers.
-- Highlights the gap between automatic metrics and real-world acceptability, suggesting careful human evaluation for medical QA in Arabic.
 
