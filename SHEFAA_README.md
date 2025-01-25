@@ -69,6 +69,14 @@ For each training sample, we create a prompt of the form:
 
 ## 📊 Evaluation of the Model  
 
+After fine-tuning, evaluate the model on dev and test sets:  
+```bash
+python score.py --model_path outputs/saved_model/
+```  
+- Replace `/path/to/saved/model` with the location of your trained model (e.g., `outputs/saved_model/`).  
+- **Output:** Evaluation metrics (e.g., accuracy, F1 score) will be displayed in the terminal.  
+
+
 ## 🔵 BLEU
 - **BLEU-1, BLEU-2, BLEU-4**  
 - Calculated with `nltk.translate.bleu_score`.
