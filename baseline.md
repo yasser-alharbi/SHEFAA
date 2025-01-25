@@ -124,7 +124,7 @@ trainer.train()
 الإجابة:  قد يكون السبب ارتفاع في نسبة هرمون الحليب او اضطراب في احدى الهرمونات المسؤولة عن تنظيم عمليات الاباضة والحمل 
 ```
 We evaluate on a small subset of 1000 examples for both validation and test sets (to reduce computation time for demonstration).
-
+# Evaluating the Model
 ## BLEU
 - **BLEU-1, BLEU-2, BLEU-4**  
 - Calculated with `nltk.translate.bleu_score`.
