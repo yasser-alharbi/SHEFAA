@@ -10,7 +10,7 @@ We assume three CSV files: **train.csv**, **valid.csv**, and **test.csv**, each 
 - **Category**: an associated category (e.g., الأمراض العصبية, الحمل والولادة, etc.),
 - **Answer**: the ground-truth or reference response.
 
- > **Note**: Due to limitation in resources in this baseline, only **10% of the data** was used for the implementation.
+ > **Note**: Due to limitation in resources in this baseline, only **10% of the data** was used for the implementation (**715,187 * 10% = 71,515**).
 
 
 We convert these CSV files into Hugging Face Datasets for streamlined tokenization and training.
@@ -106,6 +106,19 @@ trainer = Trainer(
 trainer.train()
 
 ```
+# Example Generation
+
+## The Question:
+
+**عفوا يمكنني معرفة تاخر دورة شهرية لمدة 15 يوم من 5 ايام عملت تحليل الحمل ولكن النتيجة كانت سلبية و اود ان اعرف سبب هدا التاخر لانها المرة الاولى**
+
+## Generated answer:
+
+حدوث التبويض بشكل غير صحيح, قد تكون الدورة الشهرية لديك غير منتظمة
+
+## Reference answer:
+
+قد يكون السبب ارتفاع في نسبة هرمون الحليب او اضطراب في احدى الهرمونات المسؤولة عن تنظيم عمليات الاباضة والحمل
 
 # Evaluation Metrics
 
