@@ -18,7 +18,7 @@ This project aims to advance Arabic NLP in healthcare by providing accurate resp
 > **Note:** At least **12GB of GPU memory** is recommended to speed up the process.  
 
 3. **📂 Model Placement**:  
-   Download the pretrained **Jais-family-256m** model from [Hugging Face](https://huggingface.co/) and place it in the `models/` directory.  
+   Download the pretrained **Jais-family-256m** model from [Hugging Face](https://huggingface.co/) 
 
 ---
 
@@ -28,11 +28,12 @@ This project aims to advance Arabic NLP in healthcare by providing accurate resp
 - Includes **medical questions**, **categories**, and **answers**.  
 - Only **10%** of the data (~71,515 entries) is used for baseline implementation.  
 
-**📂 Dataset Placement**: Place the dataset file in the `data/` directory with the name `dataset.csv`. Ensure the file has the following columns:  
-- `question`  
-- `category`  
-- `answer`  
+## 📂 Placement
+We assume three CSV files: **train.csv**, **valid.csv**, and **test.csv**, each containing:
 
+- **Question**: the medical question asked by the user,
+- **Category**: an associated category (e.g., الأمراض العصبية, الحمل والولادة, etc.),
+- **Answer**: the ground-truth or reference response.
 ---
 
 ## 🧠 QLoRA Approach  
