@@ -102,4 +102,51 @@ trainer = Trainer(
 )
 trainer.train()
 
+```
+# Evaluation Metrics
 
+We evaluate on a small subset of 100 examples for both validation and test sets (to reduce computation time for demonstration).
+
+## BLEU
+- **BLEU-1, BLEU-2, BLEU-4**  
+- Calculated with `nltk.translate.bleu_score`.
+
+## ROUGE
+- **ROUGE-1, ROUGE-2, ROUGE-L**  
+- Uses `rouge_score.rouge_scorer`.  
+- We report the **F-measure** of each.
+
+## BERTScore
+- **Precision, Recall, F1**  
+- Computed with `bert_score.score`.  
+- For Arabic text, `lang='ar'` is used.
+
+## Sample Results for test (using 1000 examples)
+
+| Metric         | Score (Avg) |
+|---------------|------------|
+| **BLEU-1**    | 0.037      |
+| **BLEU-2**    | 0.015      |
+| **BLEU-4**    | 0.006      |
+| **ROUGE-1 (F1)** | 0.001  |
+| **ROUGE-2 (F1)** | 0.000  |
+| **ROUGE-L (F1)** | 0.001  |
+| **BERTScore P** | 61.40% |
+| **BERTScore R** | 61.59% |
+| **BERTScore F1** | 61.33% |
+
+## Sample Results for valid (using 1000 examples)
+
+| Metric         | Score (Avg) |
+|---------------|------------|
+| **BLEU-1**    | 0.033     |
+| **BLEU-2**    | 0.014      |
+| **BLEU-4**    | 0.006      |
+| **ROUGE-1 (F1)** | 0.002  |
+| **ROUGE-2 (F1)** | 0.001  |
+| **ROUGE-L (F1)** | 0.002  |
+| **BERTScore P** | 60.75% |
+| **BERTScore R** | 60.66% |
+| **BERTScore F1** | 60.57% |
+
+---
