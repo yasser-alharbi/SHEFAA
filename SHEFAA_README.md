@@ -12,17 +12,17 @@ This project aims to advance Arabic NLP in healthcare by providing accurate resp
 1. **Python 3.8+** 
 2. Install dependencies with:  
    ```bash
-   pip install -r requirements.txt
+   pip install -r Requirements.txt
    ``` 
- **Required Libraries**:  
-   - `transformers ver4.31.0 Or newer` 
-   - `accelerate ver0.21.0 Or newer`  
-   - `bitsandbytes ver0.39.0 Or newer`
-   - `scikit-learn ver1.3.0 Or newer` 
-   - `sentencepiece ver0.1.99 Or newer`  
-   - `pyyaml ver6.0 Or newer`
-   - `numpy ver1.25.0 Or newer`
-🤗
+🤗**Required Libraries**:
+   - **transformers** `ver4.31.0 Or newer` 
+   - **accelerate** `ver0.21.0 Or newer`  
+   - **bitsandbytes** `ver0.39.0 Or newer`
+   - **scikit-learn** `ver1.3.0 Or newer` 
+   - **sentencepiece** `ver0.1.99 Or newer`  
+   - **pyyaml** `ver6.0 Or newer`
+   - **numpy** `ver1.25.0 Or newer`
+
 3. **📂 Model Placement**:  
    Download the pretrained **Jais-family-256m** model from [Hugging Face](https://huggingface.co/) 
 
