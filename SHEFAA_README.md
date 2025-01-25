@@ -9,12 +9,8 @@ This project aims to advance Arabic NLP in healthcare by providing accurate resp
 
 ## ⚙️ Prerequisites  
 
-1. **Python 3.8+** 
-2. Install the required libraries (mentioned below) with:  
-   ```bash
-   pip install -r Requirements.txt
-   ``` 
-🤗**Required Libraries**:
+1. **Python 3.8+ 🐍** 
+2. **Required Libraries** 📚:
    - **transformers** `ver4.31.0 Or newer` 
    - **accelerate** `ver0.21.0 Or newer`  
    - **bitsandbytes** `ver0.39.0 Or newer`
@@ -23,8 +19,12 @@ This project aims to advance Arabic NLP in healthcare by providing accurate resp
    - **pyyaml** `ver6.0 Or newer`
    - **numpy** `ver1.25.0 Or newer`
 
-3. **📂 Model Placement**:  
-   Download the pretrained **Jais-family-256m** model from [Hugging Face](https://huggingface.co/) 
+   You can install them with this line:
+   ```bash
+   pip install -r Requirements.txt
+   ``` 
+3. **📃 The Model**:  
+   Download the pretrained **Jais-family-256m** model from [Hugging Face](https://huggingface.co/inceptionai/Jais-family-256m)
 
 > **Note:** At least **12GB of GPU memory** is recommended to speed up the process.  
 ---
@@ -33,7 +33,7 @@ This project aims to advance Arabic NLP in healthcare by providing accurate resp
 
 ### Arabic Medical Dataset:  
 - Includes **medical questions**, **categories**, and **answers**.  
-- Only **10%** of the data (~71,515 entries) is used for baseline implementation.  
+- So far only **10%** of the data (~71,515 entries) is being used for baseline implementation.  
 
 **Placement**: We assume three CSV files: **train.csv**, **valid.csv**, and **test.csv**, each containing:
 
@@ -169,6 +169,6 @@ python score.py --model_path outputs/saved_model/
 2. **Future Directions:**  
    - Experiment with different hyperparameters or larger datasets.  
 
-3. **Contact:** Reach out at [Your Email].  
+3. **WIP:** As mentioned before, the project currantly only uses 10% of the data and is still a proof of concept.  
 
 ---
