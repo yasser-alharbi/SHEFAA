@@ -106,7 +106,7 @@ trainer = Trainer(
 trainer.train()
 
 ```
-# Example Generation
+## Example Generation
 
 **Example**:
 
@@ -168,3 +168,26 @@ We evaluate on a small subset of 1000 examples for both validation and test sets
 | **BERTScore F1** | 60.57% |
 
 ---
+
+## Comparison Between Baseline and Simple-Baseline (TF-IDF)
+
+| Metric           | Random Baseline | Baseline (10% Data) | 
+|------------------|-----------------|-------------------------|
+| **BLEU-1**       | 0.118           | 0.037                   | 
+| **BLEU-2**       | 0.081           | 0.015                   | 
+| **BLEU-4**       | 0.036           | 0.006                   | 
+| **ROUGE-1 (F1)** | 0.005           | 0.001                   | 
+| **ROUGE-2 (F1)** | 0.003           | 0.000                   | 
+| **ROUGE-L (F1)** | 0.005           | 0.001                   | 
+| **BERTScore P**  | 71.08%          | 61.40%                  | 
+| **BERTScore R**  | 70.86%          | 61.59%                  | 
+| **BERTScore F1** | 70.78%          | 61.33%                  | 
+
+### Observations and Comparison
+The comparison shows that the simple baseline consistently outperforms the current baseline system trained on only **10% of the data** and for just **1 epoch** across all metrics. BLEU scores and ROUGE metrics highlight a gap in token overlap between the model’s predictions and ground truth, with the simple baseline performing 68–100% better. Similarly, BERTScore metrics show a smaller but notable advantage (~13%) in semantic similarity for the random baseline, suggesting that its predictions are more contextually aligned with the reference answers.
+
+---
+
+## Conclusion
+- While the simple baseline performs better than the current baseline system, this is largely due to the limited training data (10%). Expanding the dataset to its full size (100%)  are expected to significantly improve performance, especially for BLEU and ROUGE metrics, which are sensitive to token overlaps.
+- Additionally, optimizing hyperparameters (e.g. the number of epochs) and incorporating domain-specific fine-tuning can help close the gap and likely surpass the simple baseline. Moving forward, the model’s performance can be enhanced by focusing on error analysis, data augmentation, and leveraging advanced techniques like LoRA for lightweight fine-tuning.
