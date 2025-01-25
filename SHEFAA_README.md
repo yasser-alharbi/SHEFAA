@@ -10,7 +10,7 @@ This project aims to advance Arabic NLP in healthcare by providing accurate resp
 ## ⚙️ Prerequisites  
 
 1. **Python 3.8+** 
-2. Install dependencies with:  
+2. Install the required libraries (mentioned below) with:  
    ```bash
    pip install -r Requirements.txt
    ``` 
