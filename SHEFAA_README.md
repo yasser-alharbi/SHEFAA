@@ -35,7 +35,7 @@ This project aims to advance Arabic NLP in healthcare by providing accurate resp
 - Includes **medical questions**, **categories**, and **answers**.  
 - So far only **10%** of the data (~71,515 entries) is being used for baseline implementation.  
 
-**Placement**: We assume three CSV files: **train.csv**, **valid.csv**, and **test.csv**, each containing:
+**Stucture**: three CSV files are used: **train.csv**, **valid.csv**, and **test.csv**, each containing:
 
 - **Question**: the medical question asked by the user,
 - **Category**: an associated category (e.g., الأمراض العصبية, الحمل والولادة, etc.),
