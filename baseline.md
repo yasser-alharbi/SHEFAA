@@ -1,89 +1,99 @@
 # Fine-Tuning Jais-family-256m with QLoRA (Baseline)
 
 ## Introduction
-In this baseline, we fine-tune the **Jais-family-256m** model using **QLoRA** from the [PEFT](https://github.com/huggingface/peft) library. The model is loaded in **4-bit** precision through [BitsAndBytes](https://github.com/TimDettmers/bitsandbytes) for memory efficiency.  
-Our goal is to answer Arabic medical questions, leveraging LoRA adapters on top of Jais.
+This document describes a baseline system for fine-tuning the **Jais-family-256m** model on an Arabic medical question-answering dataset using **QLoRA**. By loading the model weights in 4-bit precision (through [BitsAndBytes](https://github.com/TimDettmers/bitsandbytes)), we can reduce the hardware requirements while still adapting the model to our specific domain.
 
----
+## Dataset Preparation
+We assume three CSV files: **train.csv**, **valid.csv**, and **test.csv**, each containing:
 
-## Approach
+- **Question**: the medical question asked by the user,
+- **Category**: an associated category (e.g., الأمراض العصبية, الحمل والولادة, etc.),
+- **Answer**: the ground-truth or reference response.
 
-1. **Data Loading & Splitting**  
-   - We load three CSV files: **train.csv**, **valid.csv**, and **test.csv**, each containing columns:
-     - `Question`
-     - `Category`
-     - `Answer`
-   - We convert these CSVs into **Hugging Face Datasets** for easy tokenization and training.
+We convert these CSV files into Hugging Face Datasets for streamlined tokenization and training.
 
-2. **QLoRA Configuration**  
-   - The base model (`Jais-family-256m`) is loaded in **4-bit** mode using `BitsAndBytesConfig`.
-   - **LoRA** parameters are configured with:
-     - `r = 8`
-     - `lora_alpha = 32`
-     - `lora_dropout = 0.1`
-     - `target_modules = ["c_attn", "c_proj", "c_fc", "c_fc2"]`  
-   - We then apply `get_peft_model()` to wrap the original model.
+## QLoRA Approach
 
-3. **Tokenization & Prompt Format**  
-   - Each sample is tokenized with the prompt:  
-     \[
-       \text{"سؤال: {question}\nالتصنيف: {category}\nالإجابة:"}
-     \]
-   - The answer is separately tokenized as the label.
+1. **BitsAndBytes 4-bit Quantization**  
+   We load the base model (`Jais-family-256m`) in 4-bit precision. This greatly reduces VRAM usage without heavily sacrificing performance.
 
-4. **Training**  
-   - We use **1 epoch** for demonstration (can be increased).
-   - Batch size is **8** (can be tuned).
-   - **4-bit** precision plus LoRA drastically lowers GPU memory usage.
-   - Model is evaluated each epoch on the validation set, saving the best checkpoint.
+2. **LoRA Adapters**  
+   - **Rank (r):** 8  
+   - **Alpha:** 32  
+   - **Dropout:** 0.1  
+   - **Target Modules:** `["c_attn", "c_proj", "c_fc", "c_fc2"]`  
 
-5. **Evaluation & Metrics**  
-   - We generate predictions on a subset of the validation set and the test set (e.g., 100 examples) for quick checks.
-   - Metrics computed:
-     - **BLEU-1**, **BLEU-2**, **BLEU-4**
-     - **ROUGE-1**, **ROUGE-2**, **ROUGE-L** (F-measure)
-     - **BERTScore** (Precision, Recall, F1) for Arabic text.
+   These LoRA modules adapt only a small set of trainable parameters on top of the frozen base model layers, making fine-tuning more efficient.
 
----
+3. **Prompt Engineering**  
+   For each training sample, we create a prompt of the form:
+   \[
+   \text{"سؤال: {question}\nالتصنيف: {category}\nالإجابة:"}
+   \]
+   We then tokenize both the prompt and the reference answer separately. The final input_ids (prompt) serve as **input**, and the tokenized answer serves as **labels** for causal language modeling.
+
+4. **Training Configuration**  
+   - **Epochs:** 1 (demonstration; can be increased)  
+   - **Batch Size:** 8 (can be tuned based on GPU memory)  
+   - **Learning Rate:** 1e-4  
+   - **Mixed Precision (FP16):** Enabled to further reduce memory usage  
+   - **Evaluation Strategy:** By epoch  
+   - **Best Model Selection:** Based on validation loss  
 
 ## Code Snippet
+Below is an abbreviated snippet of how we configure QLoRA:
 
-Below is a concise version of how we perform the fine-tuning. For the full script, see **baseline.py**:
 ```python
-# BitsAndBytes configuration for 4-bit quantization
+from bitsandbytes import BitsAndBytesConfig
+from peft import LoraConfig, get_peft_model, TaskType
+from transformers import AutoTokenizer, AutoModelForCausalLM, Trainer, TrainingArguments
+
+# 1. Bits and Bytes Configuration
 bnb_config = BitsAndBytesConfig(
-    load_in_4bit=True,
-    bnb_4bit_compute_dtype="float16",
-    bnb_4bit_quant_type="nf4",
-    bnb_4bit_use_double_quant=True
+    load_in_4bit=True,                 
+    bnb_4bit_compute_dtype="float16",  
+    bnb_4bit_quant_type="nf4",         
+    bnb_4bit_use_double_quant=True     
 )
 
-# Load model and tokenizer
+# 2. Load Base Model & Tokenizer
+model_path = "inceptionai/Jais-family-256m"
 tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)
 model = AutoModelForCausalLM.from_pretrained(
     model_path,
     device_map="auto",
     quantization_config=bnb_config,
     trust_remote_code=True
-).to(device)
+)
 
-# Apply LoRA
+# 3. LoRA Configuration
 lora_config = LoraConfig(
-    r=8, lora_alpha=32, lora_dropout=0.1, bias="none",
+    r=8,
+    lora_alpha=32,
+    lora_dropout=0.1,
+    bias="none",
     task_type=TaskType.CAUSAL_LM,
-    target_modules=["c_attn","c_proj","c_fc","c_fc2"]
+    target_modules=["c_attn", "c_proj", "c_fc", "c_fc2"]
 )
 model = get_peft_model(model, lora_config)
 
-# Training arguments
+# 4. Training Arguments
 training_args = TrainingArguments(
     output_dir="Jais-family-256m-lora-SHEFAA",
     num_train_epochs=1,
     per_device_train_batch_size=8,
-    ...
-    fp16=True
+    per_device_eval_batch_size=8,
+    evaluation_strategy="epoch",
+    save_strategy="epoch",
+    logging_strategy="epoch",
+    fp16=True,
+    learning_rate=1e-4,
+    load_best_model_at_end=True,
+    metric_for_best_model="loss",
+    report_to="none"
 )
 
+# 5. Trainer
 trainer = Trainer(
     model=model,
     args=training_args,
