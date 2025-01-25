@@ -11,14 +11,14 @@ This project aims to advance Arabic NLP in healthcare by providing accurate resp
 
 1. **Python 3.8+**  
 2. **Required Libraries**:  
-   - `transformers ver4.31.0 Or newer`  
-   - `accelerate ver0.21.0 Or newer`  
-   - `bitsandbytes ver0.39.0 Or newer`  
-🤗
+   - `transformers==4.31.0` 🤗  
+   - `accelerate==0.21.0`  
+   - `bitsandbytes==0.39.0`  
+
 > **Note:** At least **12GB of GPU memory** is recommended to speed up the process.  
 
-3. **Download the Jais-family-256m Model**:  
-   Download the pretrained model from [Hugging Face](https://huggingface.co/) and place it in the `models/` directory.  
+3. **📂 Model Placement**:  
+   Download the pretrained **Jais-family-256m** model from [Hugging Face](https://huggingface.co/) and place it in the `models/` directory.  
 
 ---
 
@@ -28,35 +28,48 @@ This project aims to advance Arabic NLP in healthcare by providing accurate resp
 - Includes **medical questions**, **categories**, and **answers**.  
 - Only **10%** of the data (~71,515 entries) is used for baseline implementation.  
 
-## 📂 Placement
-We assume three CSV files: **train.csv**, **valid.csv**, and **test.csv**, each containing:
-
-- **Question**: the medical question asked by the user,
-- **Category**: an associated category (e.g., الأمراض العصبية, الحمل والولادة, etc.),
-- **Answer**: the ground-truth or reference response.
+**📂 Dataset Placement**: Place the dataset file in the `data/` directory with the name `dataset.csv`. Ensure the file has the following columns:  
+- `question`  
+- `category`  
+- `answer`  
 
 ---
 
-## 🚀 Running the Baseline  
+## 🧠 QLoRA Approach  
 
-### 🏋️ Training the Model  
-To fine-tune the Jais-family-256m model using **QLoRA**, run:  
-```bash
-python baseline.py --config config.yaml
+### **BitsAndBytes 4-bit Quantization**  
+We load the base model (**Jais-family-256m**) in 4-bit precision using **BitsAndBytes**. This significantly reduces VRAM usage without heavily sacrificing performance.
+
+### **LoRA Adapters**  
+- **Rank (r):** 8  
+- **Alpha:** 32  
+- **Dropout:** 0.1  
+- **Target Modules:** `["c_attn", "c_proj", "c_fc", "c_fc2"]`  
+
+These LoRA modules adapt only a small set of trainable parameters on top of the frozen base model layers, making fine-tuning highly memory efficient.
+
+### **Prompt Engineering**  
+For each training sample, we create a prompt of the form:  
+```plaintext
+سؤال: {Question}
+التصنيف: {Category}
+الإجابة:
 ```  
-- **baseline.py**: This script handles the fine-tuning process.  
-- **config.yaml**: Modify this file to set paths, hyperparameters (e.g., batch size, learning rate), and output locations.  
+- The prompt and reference answer are tokenized separately.  
+- The `input_ids` (prompt) serve as the input, and the tokenized answer serves as labels for causal language modeling.
 
-#### 🔧 QLoRA Fine-Tuning Details:  
-1. **4-bit Quantization:** Reduces GPU memory usage by loading the model in 4-bit precision using `bitsandbytes`.  
-2. **LoRA Adapters Configuration:**  
-   - **Rank (r):** 8  
-   - **Alpha:** 32  
-   - **Dropout:** 0.1  
+### **Training Configuration**  
+- **Epochs:** 1 (demonstration; can be increased)  
+- **Batch Size:** 8 (can be tuned based on GPU memory)  
+- **Learning Rate:** 1e-4  
+- **Mixed Precision (FP16):** Enabled to further reduce memory usage  
+- **Evaluation Strategy:** By epoch  
+- **Best Model Selection:** Based on validation loss  
 
-These configurations enable efficient fine-tuning with minimal memory overhead.  
+---
 
-### 📊 Evaluating the Model  
+## 📊 Evaluating the Model  
+
 After fine-tuning, evaluate the model using:  
 ```bash
 python baseline.py --evaluate --model_path outputs/saved_model/
@@ -67,14 +80,14 @@ python baseline.py --evaluate --model_path outputs/saved_model/
 
 ## 📈 Expected Outputs  
 
-1. **Logs**:  
+1. **📂 Logs**:  
    - Training logs are saved in the `outputs/logs/` directory by default.  
    - Logs include information on training loss, evaluation metrics, and system performance.  
 
-2. **Checkpoints**:  
+2. **📂 Checkpoints**:  
    - Fine-tuned model checkpoints are saved in the `outputs/checkpoints/` directory.  
 
-3. **Evaluation Results**:  
+3. **📂 Evaluation Results**:  
    - Metrics such as **F1 Score** and **Accuracy** are printed to the console.  
    - A summary of evaluation results is saved in `outputs/evaluation_results.txt`.  
 
