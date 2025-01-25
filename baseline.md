@@ -30,9 +30,9 @@ We convert these CSV files into Hugging Face Datasets for streamlined tokenizati
 
 3. **Prompt Engineering**  
    For each training sample, we create a prompt of the form:
-   \[
-   \text{"سؤال: {question}\nالتصنيف: {category}\nالإجابة:"}
-   \]
+  ```python
+   f"سؤال: {Question}\nالتصنيف: {Category}\nالإجابة:"
+```
    We then tokenize both the prompt and the reference answer separately. The final input_ids (prompt) serve as **input**, and the tokenized answer serves as **labels** for causal language modeling.
 
 4. **Training Configuration**  
