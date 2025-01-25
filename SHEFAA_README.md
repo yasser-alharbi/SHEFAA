@@ -68,13 +68,65 @@ For each training sample, we create a prompt of the form:
 
 ---
 
-## 📊 Evaluating the Model  
+## 📊 Evaluation of the Model  
 
-After fine-tuning, evaluate the model using:  
-```bash
-python baseline.py --evaluate --model_path outputs/saved_model/
-```  
-- Replace `outputs/saved_model/` with the location of your fine-tuned model.  
+## 🔵 BLEU
+- **BLEU-1, BLEU-2, BLEU-4**  
+- Calculated with `nltk.translate.bleu_score`.
+
+## 🔴 ROUGE
+- **ROUGE-1, ROUGE-2, ROUGE-L**  
+- Uses `rouge_score.rouge_scorer`.  
+- We report the **F-measure** of each.
+
+## 🟠 BERTScore
+- **Precision, Recall, F1**  
+- Computed with `bert_score.score`.  
+- For Arabic text, `lang='ar'` is used.
+
+## Sample Results for test (using 1000 examples)
+
+| Metric         | Score (Avg) |
+|---------------|------------|
+| **BLEU-1**    | 0.037      |
+| **BLEU-2**    | 0.015      |
+| **BLEU-4**    | 0.006      |
+| **ROUGE-1 (F1)** | 0.001  |
+| **ROUGE-2 (F1)** | 0.000  |
+| **ROUGE-L (F1)** | 0.001  |
+| **BERTScore P** | 61.40% |
+| **BERTScore R** | 61.59% |
+| **BERTScore F1** | 61.33% |
+
+## Sample Results for valid (using 1000 examples)
+
+| Metric         | Score (Avg) |
+|---------------|------------|
+| **BLEU-1**    | 0.033     |
+| **BLEU-2**    | 0.014      |
+| **BLEU-4**    | 0.006      |
+| **ROUGE-1 (F1)** | 0.002  |
+| **ROUGE-2 (F1)** | 0.001  |
+| **ROUGE-L (F1)** | 0.002  |
+| **BERTScore P** | 60.75% |
+| **BERTScore R** | 60.66% |
+| **BERTScore F1** | 60.57% |
+
+---
+
+## Comparison Between Baseline and Simple-Baseline (TF-IDF)
+
+| Metric           | Random Baseline | Baseline (10% Data) | 
+|------------------|-----------------|-------------------------|
+| **BLEU-1**       | 0.118           | 0.037                   | 
+| **BLEU-2**       | 0.081           | 0.015                   | 
+| **BLEU-4**       | 0.036           | 0.006                   | 
+| **ROUGE-1 (F1)** | 0.005           | 0.001                   | 
+| **ROUGE-2 (F1)** | 0.003           | 0.000                   | 
+| **ROUGE-L (F1)** | 0.005           | 0.001                   | 
+| **BERTScore P**  | 71.08%          | 61.40%                  | 
+| **BERTScore R**  | 70.86%          | 61.59%                  | 
+| **BERTScore F1** | 70.78%          | 61.33%                  | 
 
 ---
 
