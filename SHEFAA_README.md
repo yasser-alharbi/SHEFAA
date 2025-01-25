@@ -11,9 +11,9 @@ This project aims to advance Arabic NLP in healthcare by providing accurate resp
 
 1. **Python 3.8+**  
 2. **Required Libraries**:  
-   - `transformers==4.31.0` 🤗  
-   - `accelerate==0.21.0`  
-   - `bitsandbytes==0.39.0`  
+   - `transformers ver4.31.0 Or newer` 🤗  
+   - `accelerate ver0.21.0 Or newer`  
+   - `bitsandbytes ver0.39.0 Or newer`  
 
 > **Note:** At least **12GB of GPU memory** is recommended to speed up the process.  
 
@@ -28,15 +28,14 @@ This project aims to advance Arabic NLP in healthcare by providing accurate resp
 - Includes **medical questions**, **categories**, and **answers**.  
 - Only **10%** of the data (~71,515 entries) is used for baseline implementation.  
 
-## 📂 Placement
-We assume three CSV files: **train.csv**, **valid.csv**, and **test.csv**, each containing:
+**Placement**: We assume three CSV files: **train.csv**, **valid.csv**, and **test.csv**, each containing:
 
 - **Question**: the medical question asked by the user,
 - **Category**: an associated category (e.g., الأمراض العصبية, الحمل والولادة, etc.),
 - **Answer**: the ground-truth or reference response.
 ---
 
-## 🧠 QLoRA Approach  
+## 🚀 Running the Baseline with Qlora
 
 ### **BitsAndBytes 4-bit Quantization**  
 We load the base model (**Jais-family-256m**) in 4-bit precision using **BitsAndBytes**. This significantly reduces VRAM usage without heavily sacrificing performance.
@@ -79,20 +78,6 @@ python baseline.py --evaluate --model_path outputs/saved_model/
 
 ---
 
-## 📈 Expected Outputs  
-
-1. **📂 Logs**:  
-   - Training logs are saved in the `outputs/logs/` directory by default.  
-   - Logs include information on training loss, evaluation metrics, and system performance.  
-
-2. **📂 Checkpoints**:  
-   - Fine-tuned model checkpoints are saved in the `outputs/checkpoints/` directory.  
-
-3. **📂 Evaluation Results**:  
-   - Metrics such as **F1 Score** and **Accuracy** are printed to the console.  
-   - A summary of evaluation results is saved in `outputs/evaluation_results.txt`.  
-
----
 
 ## 📊 Performance  
 
