@@ -15,11 +15,10 @@ This project aims to advance Arabic NLP in healthcare by providing accurate resp
    - `accelerate ver0.21.0 Or newer`  
    - `bitsandbytes ver0.39.0 Or newer`  
 
-> **Note:** At least **12GB of GPU memory** is recommended to speed up the process.  
-
 3. **📂 Model Placement**:  
    Download the pretrained **Jais-family-256m** model from [Hugging Face](https://huggingface.co/) 
 
+> **Note:** At least **12GB of GPU memory** is recommended to speed up the process.  
 ---
 
 ## 📂 Dataset Preparation  
