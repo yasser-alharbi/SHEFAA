@@ -11,10 +11,10 @@ This project aims to advance Arabic NLP in healthcare by providing accurate resp
 
 1. **Python 3.8+**  
 2. **Required Libraries**:  
-   - `transformers==4.31.0` 🤗  
-   - `accelerate==0.21.0`  
-   - `bitsandbytes==0.39.0`  
-
+   - `transformers ver4.31.0 Or newer`  
+   - `accelerate ver0.21.0 Or newer`  
+   - `bitsandbytes ver0.39.0 Or newer`  
+🤗
 > **Note:** At least **12GB of GPU memory** is recommended to speed up the process.  
 
 3. **Download the Jais-family-256m Model**:  
