@@ -48,7 +48,7 @@ This project aims to advance Arabic NLP in healthcare by providing accurate resp
 ## 🚀 Running SHEFAA  
 
 ### File Structure  
-Ensure your project is structured like this:  
+Ensure everything is structured like this:  
 ```
 SHEFAA/
 ├── models/          # Pretrained Jais model
