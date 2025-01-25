@@ -9,84 +9,76 @@ This project aims to advance Arabic NLP in healthcare by providing accurate resp
 
 ## ⚙️ Prerequisites  
 
-### 🛠 Environment Setup  
 1. **Python 3.8+**  
-2. Install dependencies with:  
-   ```bash
-   pip install -r requirements.txt
-   ```  
-   **Key Libraries**:  
-   - `PyTorch` 🟠  
-   - `transformers` 🤗  
-   - `accelerate`, `bitsandbytes`, and others  
+2. **Required Libraries**:  
+   - `transformers==4.31.0` 🤗  
+   - `accelerate==0.21.0`  
+   - `bitsandbytes==0.39.0`  
 
-3. **Hardware Requirements**:  
-   - 🖥 **GPU:** 16GB+ memory (e.g., NVIDIA V100/A100)  
-   - 🧠 **RAM:** 32GB+  
+> **Note:** At least **12GB of GPU memory** is recommended to speed up the process.  
 
-4. **Download the JAIS Model**:  
-   Get the pretrained **Jais-family-256m** model from [Hugging Face](https://huggingface.co/) and place it in a `models/` directory.  
+3. **Download the Jais-family-256m Model**:  
+   Download the pretrained model from [Hugging Face](https://huggingface.co/) and place it in the `models/` directory.  
 
 ---
 
 ## 📂 Dataset Preparation  
 
-1. **Arabic Medical Dataset**:  
-   - Includes medical questions, categories, and answers.  
-   - Only **10%** of the data (~71,515 entries) is used for baseline implementation.  
+### Arabic Medical Dataset:  
+- Includes **medical questions**, **categories**, and **answers**.  
+- Only **10%** of the data (~71,515 entries) is used for baseline implementation.  
 
-2. **Preprocessing**:  
-   Run the following command to clean and split the data:  
-   ```bash
-   python preprocess.py --data_path data/raw_dataset.csv --output_dir data/processed/
-   ```  
-   - Replace `/path/to/dataset` with the path to your dataset file (e.g., `data/raw_dataset.csv`).  
-   - **Output:** Preprocessed files will be saved in `data/processed/`.  
+**Dataset Placement**: Place the dataset file in the `data/` directory with the name `dataset.csv`. Ensure the file has the following columns:  
+- `question`  
+- `category`  
+- `answer`  
 
 ---
 
-## 🚀 Running SHEFAA  
-
-### File Structure  
-Ensure everything is structured like this:  
-```
-SHEFAA/
-├── models/          # Pretrained Jais model
-├── data/            # Dataset files
-│   ├── raw_dataset.csv
-│   ├── processed/
-├── train.py         # Training script
-├── evaluate.py      # Evaluation script
-├── config.yaml      # Configuration file
-```
+## 🚀 Running the Baseline  
 
 ### 🏋️ Training the Model  
 To fine-tune the Jais-family-256m model using **QLoRA**, run:  
 ```bash
-python train.py --config config.yaml
+python baseline.py --config config.yaml
 ```  
-- **config.yaml:** Modify this file to set paths, hyperparameters (e.g., batch size, learning rate), and output locations.  
-- **Example Output:** Training logs and model checkpoints will be saved in `outputs/`.  
+- **baseline.py**: This script handles the fine-tuning process.  
+- **config.yaml**: Modify this file to set paths, hyperparameters (e.g., batch size, learning rate), and output locations.  
 
 #### 🔧 QLoRA Fine-Tuning Details:  
-1. **Efficient Memory Usage:** Uses **4-bit quantization** with `bitsandbytes` to significantly reduce GPU memory usage.  
+1. **4-bit Quantization:** Reduces GPU memory usage by loading the model in 4-bit precision using `bitsandbytes`.  
 2. **LoRA Adapters Configuration:**  
    - **Rank (r):** 8  
    - **Alpha:** 32  
    - **Dropout:** 0.1  
-   - **Target Modules:** Fine-tunes specific layers (e.g., `c_attn`, `c_proj`).  
+
+These configurations enable efficient fine-tuning with minimal memory overhead.  
 
 ### 📊 Evaluating the Model  
-After fine-tuning, evaluate the model on dev and test sets:  
+After fine-tuning, evaluate the model using:  
 ```bash
-python evaluate.py --model_path outputs/saved_model/
+python baseline.py --evaluate --model_path outputs/saved_model/
 ```  
-- Replace `/path/to/saved/model` with the location of your trained model (e.g., `outputs/saved_model/`).  
-- **Output:** Evaluation metrics (e.g., accuracy, F1 score) will be displayed in the terminal.  
+- Replace `outputs/saved_model/` with the location of your fine-tuned model.  
 
 ---
 
-## 📈 Performance  
+## 📈 Expected Outputs  
+
+1. **Logs**:  
+   - Training logs are saved in the `outputs/logs/` directory by default.  
+   - Logs include information on training loss, evaluation metrics, and system performance.  
+
+2. **Checkpoints**:  
+   - Fine-tuned model checkpoints are saved in the `outputs/checkpoints/` directory.  
+
+3. **Evaluation Results**:  
+   - Metrics such as **F1 Score** and **Accuracy** are printed to the console.  
+   - A summary of evaluation results is saved in `outputs/evaluation_results.txt`.  
+
+---
+
+## 📊 Performance  
 
 - **Primary Metric:** [Insert metric, e.g., F1 Score]  
 - **Results**:  
@@ -102,13 +94,12 @@ python evaluate.py --model_path outputs/saved_model/
 
 ## 📝 Notes  
 
-1. **Troubleshooting Tips:**  
-   - **CUDA Out of Memory:** Reduce batch size in `config.yaml`.  
-   - **File Not Found:** Ensure datasets and models are in their correct directories.  
+1. **Common Issues:**  
+   - **CUDA Out of Memory:** Reduce the batch size in `config.yaml`.  
+   - **File Not Found:** Verify that datasets and models are in their correct locations.  
 
-2. **Next Steps:**  
-   - Fine-tune on additional datasets to improve performance.  
-   - Experiment with different hyperparameters or architectures.  
+2. **Future Directions:**  
+   - Experiment with different hyperparameters or larger datasets.  
 
 3. **Contact:** Reach out at [Your Email].  
 
