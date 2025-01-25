@@ -10,6 +10,9 @@ We assume three CSV files: **train.csv**, **valid.csv**, and **test.csv**, each 
 - **Category**: an associated category (e.g., الأمراض العصبية, الحمل والولادة, etc.),
 - **Answer**: the ground-truth or reference response.
 
+ > **Note**: Due to limitation in resources in this baseline, only **10% of the data** was used for the implementation.
+
+
 We convert these CSV files into Hugging Face Datasets for streamlined tokenization and training.
 
 ## QLoRA Approach
@@ -105,7 +108,7 @@ trainer.train()
 ```
 # Evaluation Metrics
 
-We evaluate on a small subset of 100 examples for both validation and test sets (to reduce computation time for demonstration).
+We evaluate on a small subset of 1000 examples for both validation and test sets (to reduce computation time for demonstration).
 
 ## BLEU
 - **BLEU-1, BLEU-2, BLEU-4**  
