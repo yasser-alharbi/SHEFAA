@@ -33,7 +33,7 @@ This project aims to advance Arabic NLP in healthcare by providing accurate resp
 
 1. **Arabic Medical Dataset**:  
    - Includes medical questions, categories, and answers.  
-   - Only **10%** of the data (~71,515 entries) is used for baseline implementation.  
+   - So far only **10%** of the data (~71,515 entries) is used for baseline implementation.  
 
 2. **Preprocessing**:  
    Run the following command to clean and split data:  
