@@ -141,7 +141,7 @@ We evaluate on a small subset of 1000 examples for both validation and test sets
 
 ---
 # Result
-## Baseline Results for test (**after** cleaning the dataset)
+## Baseline Results for test (1000 Sample) (**after** cleaning the dataset)
 
 | Metric         | Score (Avg) |
 |---------------|------------|
@@ -155,7 +155,7 @@ We evaluate on a small subset of 1000 examples for both validation and test sets
 | **BERTScore R** | 61.59% |
 | **BERTScore F1** | 61.33% |
 
-## Baseline Results for valid (**after** cleaning the dataset)
+## Baseline Results for valid (1000 Sample) (**after** cleaning the dataset)
 
 | Metric         | Score (Avg) |
 |---------------|------------|
@@ -169,7 +169,7 @@ We evaluate on a small subset of 1000 examples for both validation and test sets
 | **BERTScore R** | 60.66% |
 | **BERTScore F1** | 60.57% |
 
-## Baseline Results for test (**before** cleaning the dataset)
+## Baseline Results for test (1000 Sample) (**before** cleaning the dataset)
 
 | Metric         | Score (Avg) |
 |---------------|------------|
@@ -183,7 +183,7 @@ We evaluate on a small subset of 1000 examples for both validation and test sets
 | **BERTScore R** | 60.66% |
 | **BERTScore F1** | 60.57% |
 
-## Baseline Results for valid (**before** cleaning the dataset)
+## Baseline Results for valid (1000 Sample) (**before** cleaning the dataset)
 
 | Metric         | Score (Avg) |
 |---------------|------------|
@@ -199,7 +199,7 @@ We evaluate on a small subset of 1000 examples for both validation and test sets
 
 ---
 
-## Comparison Between Baseline and Simple-Baseline (TF-IDF)
+## Comparison Between Baseline and Simple-Baseline (TF-IDF) (1000 Sample)
 
 | Metric           | TF-IDF Baseline | Baseline (10% Data) | 
 |------------------|-----------------|-------------------------|
