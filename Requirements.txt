@@ -1,18 +1,18 @@
 # Core Machine Learning and NLP Libraries
-torch==2.0.1
-transformers==4.31.0
-datasets==2.14.4
-accelerate==0.21.0
-bitsandbytes==0.39.0
+torch
+transformers
+datasets
+accelerate
+bitsandbytes
 
 # Evaluation and Metrics
-scikit-learn==1.3.0
+scikit-learn
 
 # Tokenization and Preprocessing
-sentencepiece==0.1.99
+sentencepiece
 
 # File Handling and Configuration
-pyyaml==6.0
+pyyaml
 
 # Utilities
-numpy==1.25.0
+numpy
