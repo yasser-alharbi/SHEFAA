@@ -26,7 +26,9 @@ This project aims to advance Arabic NLP in healthcare by providing accurate resp
 3. **📃 The Model**:  
    Download the pretrained **Jais-family-256m** model from [Hugging Face](https://huggingface.co/inceptionai/Jais-family-256m)
 
-> **Note:** At least **12GB of GPU memory** is recommended to speed up the process.  
+> **Note!:** At least **12GB of GPU memory** is recommended to speed up the process.
+
+> **Note!:** The scripts requires CUDA-enabled GPUs to run efficiently. CUDA is critical for using the bitsandbytes library.  
 ---
 
 ## 📂 Dataset Preparation  
