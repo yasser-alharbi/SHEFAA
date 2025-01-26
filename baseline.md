@@ -106,6 +106,85 @@ trainer = Trainer(
 trainer.train()
 
 ```
+## The Process For Generation and Evaluation
+
+The SHEFAA project provides two key scripts—`baseline.py` and `score.py`—to generate answers to medical questions and evaluate the model's performance.
+
+---
+
+### **Functionality Overview**
+
+#### **`baseline.py`**
+- Generates answers to medical questions using a pre-trained language model.
+- Reads a dataset containing questions, categories, and ground-truth answers, processes it, and produces predictions.
+
+#### **`score.py`**
+- Evaluates the quality of the model's predictions by comparing them against ground-truth answers.
+- Computes performance metrics such as BLEU, ROUGE, or other specified evaluation metrics.
+
+---
+
+## **Inputs, Processing, and Outputs**
+
+### **`baseline.py`**
+
+#### **Inputs**
+- **Dataset**: A CSV file with the following columns:
+  - **Question**: The medical question to be answered.
+  - **Category**: The type of the question (e.g., symptoms, diagnosis, treatment).
+  - **Answer**: The reference or ground-truth answer.
+
+#### **Processing**
+1. **Data Loading and Preprocessing**:
+   - The script reads the input CSV file to extract the "Question," "Category," and "Answer" columns.
+   - Questions and categories are tokenized and formatted for input into the language model.
+
+2. **Model Initialization**:
+   - A pre-trained language model (likely from Hugging Face) is loaded.
+   - The model is prepared for inference, ensuring it is compatible with CUDA for GPU-accelerated processing.
+
+3. **Answer Generation**:
+   - The tokenized input questions are fed into the model.
+   - The model generates answers based on the context provided by the question and category.
+
+
+#### **Outputs**
+- **`references.txt`**: Contains the ground-truth answers extracted from the dataset.
+- **`predictions.txt`**: Contains the model-generated answers for the input questions.
+
+---
+
+### **`score.py`**
+
+#### **Inputs**
+- **`references.txt`**: Produced by `baseline.py`, containing the ground-truth answers.
+- **`predictions.txt`**: Produced by `baseline.py`, containing the model's generated answers.
+
+#### **Processing**
+1. **Loading Predictions and References**:
+   - The script reads the `references.txt` and `predictions.txt` files.
+   - It aligns the predictions with their corresponding ground-truth answers.
+
+2. **Evaluation Metrics Computation**:
+   - Metrics such as BLEU, ROUGE, or other evaluation scores are computed.
+   - These metrics measure the similarity between the generated answers and the ground-truth answers, providing a quantitative assessment of the model's accuracy and relevance.
+
+3. **Reporting Results**:
+   - The computed metrics are displayed in the console or saved to a results file for further analysis.
+
+#### **Outputs**
+- Evaluation metrics (e.g., BLEU, ROUGE scores) that quantify the model's performance.
+
+---
+
+## **Key Requirements to Run the Scripts**
+
+### **1. CUDA Compatibility (for `baseline.py`)**
+- A CUDA-enabled GPU is essential for running `baseline.py` effectively.
+- CUDA is required for the `bitsandbytes` library, which optimizes model inference.  
+  Without CUDA, the following error will occur:
+
+
 ## Example Generation
 
 **Example**:
