@@ -177,9 +177,7 @@ The SHEFAA project provides two key scripts—`baseline.py` and `score.py`—to 
 
 ---
 
-## **Key Requirements to Run the Scripts**
-
-### **1. CUDA Compatibility (for `baseline.py`)**
+#### **CUDA Compatibility (for `baseline.py`)**
 - A CUDA-enabled GPU is essential for running `baseline.py` effectively.
 - CUDA is required for the `bitsandbytes` library, which optimizes model inference.  
   Without CUDA, the following error will occur:
