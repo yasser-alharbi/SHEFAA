@@ -141,79 +141,20 @@ We evaluate on a small subset of 1000 examples for both validation and test sets
 
 ---
 # Result
-## Baseline Results for test (1000 Sample) (**after** cleaning the dataset)
 
-| Metric         | Score (Avg) |
-|---------------|------------|
-| **BLEU-1**    | 0.037      |
-| **BLEU-2**    | 0.015      |
-| **BLEU-4**    | 0.006      |
-| **ROUGE-1 (F1)** | 0.001  |
-| **ROUGE-2 (F1)** | 0.000  |
-| **ROUGE-L (F1)** | 0.001  |
-| **BERTScore P** | 61.40% |
-| **BERTScore R** | 61.59% |
-| **BERTScore F1** | 61.33% |
+| **Metric**       | **Baseline (10% Data)**<br>(Test, 1000 Sample, *After Cleaning*) | **Baseline (10% Data)**<br>(Valid, 1000 Sample, *After Cleaning*) | **Baseline (10% Data)**<br>(Test, 1000 Sample, *Before Cleaning*) | **Baseline (10% Data)**<br>(Valid, 1000 Sample, *Before Cleaning*) | **TF‑IDF Baseline (100% Data)**<br>(Test, 1000 Sample) |
+|------------------|-----------------------------------------------------------------|--------------------------------------------------------------------|---------------------------------|-----------------------------------|-------------------------------------------|
+| **BLEU‑1**       | 0.037                                                           | 0.033                                                              | 0.020                           | 0.017                             | 0.118                                     |
+| **BLEU‑2**       | 0.015                                                           | 0.014                                                              | 0.010                           | 0.008                             | 0.081                                     |
+| **BLEU‑4**       | 0.006                                                           | 0.006                                                              | 0.004                           | 0.003                             | 0.036                                     |
+| **ROUGE‑1 (F1)** | 0.001                                                           | 0.002                                                              | 0.000                           | 0.000                             | 0.005                                     |
+| **ROUGE‑2 (F1)** | 0.000                                                           | 0.001                                                              | 0.000                           | 0.000                             | 0.003                                     |
+| **ROUGE‑L (F1)** | 0.001                                                           | 0.002                                                              | 0.000                           | 0.000                             | 0.005                                     |
+| **BERTScore P**  | 61.40%                                                          | 60.75%                                                             | 60.93%                          | 60.42%                            | 71.08%                                    |
+| **BERTScore R**  | 61.59%                                                          | 60.66%                                                             | 65.99%                          | 65.78%                            | 70.86%                                    |
+| **BERTScore F1** | 61.33%                                                          | 60.57%                                                             | 63.18%                          | 62.83%                            | 70.78%                                    |
 
-## Baseline Results for valid (1000 Sample) (**after** cleaning the dataset)
-
-| Metric         | Score (Avg) |
-|---------------|------------|
-| **BLEU-1**    | 0.033     |
-| **BLEU-2**    | 0.014      |
-| **BLEU-4**    | 0.006      |
-| **ROUGE-1 (F1)** | 0.002  |
-| **ROUGE-2 (F1)** | 0.001  |
-| **ROUGE-L (F1)** | 0.002  |
-| **BERTScore P** | 60.75% |
-| **BERTScore R** | 60.66% |
-| **BERTScore F1** | 60.57% |
-
-## Baseline Results for test (1000 Sample) (**before** cleaning the dataset)
-
-| Metric         | Score (Avg) |
-|---------------|------------|
-| **BLEU-1**    | 0.033     |
-| **BLEU-2**    | 0.014      |
-| **BLEU-4**    | 0.006      |
-| **ROUGE-1 (F1)** | 0.002  |
-| **ROUGE-2 (F1)** | 0.001  |
-| **ROUGE-L (F1)** | 0.002  |
-| **BERTScore P** | 60.75% |
-| **BERTScore R** | 60.66% |
-| **BERTScore F1** | 60.57% |
-
-## Baseline Results for valid (1000 Sample) (**before** cleaning the dataset)
-
-| Metric         | Score (Avg) |
-|---------------|------------|
-| **BLEU-1**    | 0.033     |
-| **BLEU-2**    | 0.014      |
-| **BLEU-4**    | 0.006      |
-| **ROUGE-1 (F1)** | 0.002  |
-| **ROUGE-2 (F1)** | 0.001  |
-| **ROUGE-L (F1)** | 0.002  |
-| **BERTScore P** | 60.75% |
-| **BERTScore R** | 60.66% |
-| **BERTScore F1** | 60.57% |
-
----
-
-## Comparison Between Baseline and Simple-Baseline (TF-IDF) (1000 Sample)
-
-| Metric           | TF-IDF Baseline | Baseline (10% Data) | 
-|------------------|-----------------|-------------------------|
-| **BLEU-1**       | 0.118           | 0.037                   | 
-| **BLEU-2**       | 0.081           | 0.015                   | 
-| **BLEU-4**       | 0.036           | 0.006                   | 
-| **ROUGE-1 (F1)** | 0.005           | 0.001                   | 
-| **ROUGE-2 (F1)** | 0.003           | 0.000                   | 
-| **ROUGE-L (F1)** | 0.005           | 0.001                   | 
-| **BERTScore P**  | 71.08%          | 61.40%                  | 
-| **BERTScore R**  | 70.86%          | 61.59%                  | 
-| **BERTScore F1** | 70.78%          | 61.33%                  | 
-
-### Observations and Comparison
+### Observations and Comparison Between Baseline and Simple-Baseline (TF-IDF)
 The comparison shows that the simple baseline consistently outperforms the current baseline system trained on only **10% of the data** and for just **1 epoch** across all metrics. BLEU scores and ROUGE metrics highlight a gap in token overlap between the model’s predictions and ground truth, with the simple baseline performing 68–100% better. Similarly, BERTScore metrics show a smaller but notable advantage (~13%) in semantic similarity for the random baseline, suggesting that its predictions are more contextually aligned with the reference answers.
 
 ---
