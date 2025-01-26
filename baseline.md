@@ -139,7 +139,9 @@ We evaluate on a small subset of 1000 examples for both validation and test sets
 - Computed with `bert_score.score`.  
 - For Arabic text, `lang='ar'` is used.
 
-## Sample Results for test (using 1000 examples)
+---
+# Result
+## Baseline Results for test (**after** cleaning the dataset)
 
 | Metric         | Score (Avg) |
 |---------------|------------|
@@ -153,7 +155,35 @@ We evaluate on a small subset of 1000 examples for both validation and test sets
 | **BERTScore R** | 61.59% |
 | **BERTScore F1** | 61.33% |
 
-## Sample Results for valid (using 1000 examples)
+## Baseline Results for valid (**after** cleaning the dataset)
+
+| Metric         | Score (Avg) |
+|---------------|------------|
+| **BLEU-1**    | 0.033     |
+| **BLEU-2**    | 0.014      |
+| **BLEU-4**    | 0.006      |
+| **ROUGE-1 (F1)** | 0.002  |
+| **ROUGE-2 (F1)** | 0.001  |
+| **ROUGE-L (F1)** | 0.002  |
+| **BERTScore P** | 60.75% |
+| **BERTScore R** | 60.66% |
+| **BERTScore F1** | 60.57% |
+
+## Baseline Results for test (**before** cleaning the dataset)
+
+| Metric         | Score (Avg) |
+|---------------|------------|
+| **BLEU-1**    | 0.033     |
+| **BLEU-2**    | 0.014      |
+| **BLEU-4**    | 0.006      |
+| **ROUGE-1 (F1)** | 0.002  |
+| **ROUGE-2 (F1)** | 0.001  |
+| **ROUGE-L (F1)** | 0.002  |
+| **BERTScore P** | 60.75% |
+| **BERTScore R** | 60.66% |
+| **BERTScore F1** | 60.57% |
+
+## Baseline Results for valid (**before** cleaning the dataset)
 
 | Metric         | Score (Avg) |
 |---------------|------------|
@@ -171,7 +201,7 @@ We evaluate on a small subset of 1000 examples for both validation and test sets
 
 ## Comparison Between Baseline and Simple-Baseline (TF-IDF)
 
-| Metric           | Random Baseline | Baseline (10% Data) | 
+| Metric           | TF-IDF Baseline | Baseline (10% Data) | 
 |------------------|-----------------|-------------------------|
 | **BLEU-1**       | 0.118           | 0.037                   | 
 | **BLEU-2**       | 0.081           | 0.015                   | 
