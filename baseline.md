@@ -214,8 +214,9 @@ We evaluate on a small subset of 1000 examples for both validation and test sets
 
 ---
 # Result
+All of the results were tested on 1000 sample
 
-| **Metric**       | **Baseline (10% Data)**<br>(Test, 1000 Sample, *After Cleaning*) | **Baseline (10% Data)**<br>(Valid, 1000 Sample, *After Cleaning*) | **Baseline (10% Data)**<br>(Test, 1000 Sample, *Before Cleaning*) | **Baseline (10% Data)**<br>(Valid, 1000 Sample, *Before Cleaning*) | **TF‑IDF Baseline (100% Data)**<br>(Test, 1000 Sample) |
+| **Metric**       | **Baseline (10% Data)**<br>(Test, *After Cleaning*) | **Baseline (10% Data)**<br>(Valid, *After Cleaning*) | **Baseline (10% Data)**<br>(Test, *Before Cleaning*) | **Baseline (10% Data)**<br>(Valid, *Before Cleaning*) | **TF‑IDF Baseline (100% Data)**<br>(Test) |
 |------------------|-----------------------------------------------------------------|--------------------------------------------------------------------|---------------------------------|-----------------------------------|-------------------------------------------|
 | **BLEU‑1**       | 0.037                                                           | 0.033                                                              | 0.020                           | 0.017                             | 0.118                                     |
 | **BLEU‑2**       | 0.015                                                           | 0.014                                                              | 0.010                           | 0.008                             | 0.081                                     |
