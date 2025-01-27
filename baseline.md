@@ -44,66 +44,62 @@ We convert these CSV files into Hugging Face Datasets for streamlined tokenizati
    - **Best Model Selection:** Based on validation loss  
 
 ## Code Snippet
-Below is an abbreviated snippet of how we configure QLoRA:
+Below is an abbreviated snippet of how we generate answers:
 
 ```python
-from bitsandbytes import BitsAndBytesConfig
-from peft import LoraConfig, get_peft_model, TaskType
-from transformers import AutoTokenizer, AutoModelForCausalLM, Trainer, TrainingArguments
+import torch
+from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline, BitsAndBytesConfig
+#from peft import BitsAndBytesConfig
+from datasets import load_dataset
+from tqdm import tqdm
 
-# 1. Bits and Bytes Configuration
-bnb_config = BitsAndBytesConfig(
-    load_in_4bit=True,                 
-    bnb_4bit_compute_dtype="float16",  
-    bnb_4bit_quant_type="nf4",         
-    bnb_4bit_use_double_quant=True     
-)
+device = "cuda" if torch.cuda.is_available() else "cpu"
 
-# 2. Load Base Model & Tokenizer
-model_path = "inceptionai/Jais-family-256m"
-tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)
-model = AutoModelForCausalLM.from_pretrained(
-    model_path,
-    device_map="auto",
-    quantization_config=bnb_config,
-    trust_remote_code=True
-)
+def generate_from_dataset(dataset, model, tokenizer, max_new_tokens=100):
+    """
+    Generates answers for each Question/Category entry in `dataset`.
+    
+    Expects dataset columns: "Question", "Category".
+    Returns a list of predicted answers (strings).
+    """
+    predictions = []
 
-# 3. LoRA Configuration
-lora_config = LoraConfig(
-    r=8,
-    lora_alpha=32,
-    lora_dropout=0.1,
-    bias="none",
-    task_type=TaskType.CAUSAL_LM,
-    target_modules=["c_attn", "c_proj", "c_fc", "c_fc2"]
-)
-model = get_peft_model(model, lora_config)
+    for q, cat in tqdm(
+        zip(dataset["Question"], dataset["Category"]),
+        total=len(dataset["Question"]),
+        desc="Generating answers"
+    ):
+        # Construct the same style of prompt used in training (Arabic)
+        prompt = f"سؤال: {q}\nالتصنيف: {cat}\nالإجابة:"
+        
+        # Tokenize
+        inputs = tokenizer(prompt, return_tensors="pt").to(device)
+        
+        # Generate
+        with torch.no_grad():
+            outputs = model.generate(
+                **inputs,
+                max_new_tokens=max_new_tokens,
+                do_sample=True,
+                temperature=0.7,
+                top_p=0.9,
+                pad_token_id=tokenizer.eos_token_id
+            )
+        
+        # Decode the tokens
+        generated_text = tokenizer.decode(outputs[0], skip_special_tokens=True)
+        
+        # Extract text after "الإجابة:"
+        if "الإجابة:" in generated_text:
+            # Split on the first occurrence of "الإجابة:"
+            parts = generated_text.split("الإجابة:", 1)
+            answer = parts[1].strip()
+            predictions.append(answer)
+        else:
+            # If no "الإجابة:" is found, store entire generation
+            predictions.append(generated_text)
 
-# 4. Training Arguments
-training_args = TrainingArguments(
-    output_dir="Jais-family-256m-lora-SHEFAA",
-    num_train_epochs=1,
-    per_device_train_batch_size=8,
-    per_device_eval_batch_size=8,
-    evaluation_strategy="epoch",
-    save_strategy="epoch",
-    logging_strategy="epoch",
-    fp16=True,
-    learning_rate=1e-4,
-    load_best_model_at_end=True,
-    metric_for_best_model="loss",
-    report_to="none"
-)
-
-# 5. Trainer
-trainer = Trainer(
-    model=model,
-    args=training_args,
-    train_dataset=train_dataset,
-    eval_dataset=valid_dataset,
-)
-trainer.train()
+    return predictions
 
 ```
 ## The Process For Generation and Evaluation
