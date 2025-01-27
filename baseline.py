@@ -46,9 +46,7 @@ def generate_from_dataset(dataset, model, tokenizer, max_new_tokens=100):
             parts = generated_text.split("الإجابة:", 1)
             answer = parts[1].strip()
             predictions.append(answer)
-        else:
-            # If no "الإجابة:" is found, store entire generation
-            predictions.append(generated_text)
+        
 
     return predictions
 
