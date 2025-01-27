@@ -68,7 +68,7 @@ For each training sample, we create a prompt of the form:
 - The `input_ids` (prompt) serve as the input, and the tokenized answer serves as labels for causal language modeling.
 
 ### **Training Configuration**  
-- **Epochs:** 1 (demonstration; can be increased)  
+- **Epochs:** 1 (**due to limitation in resources**; can be increased)  
 - **Batch Size:** 8 (can be tuned based on GPU memory)  
 - **Learning Rate:** 1e-4  
 - **Mixed Precision (FP16):** Enabled to further reduce memory usage  
