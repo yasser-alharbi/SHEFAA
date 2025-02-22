@@ -2,13 +2,21 @@
 # 🩺 **SHEFAA Project**  
 
 ## 🌟 Overview  
-**SHEFAA** is an Arabic medical question-answering system fine-tuned using **QLoRA** on the **Jais-family-256m** model.  
-This project aims to advance Arabic NLP in healthcare by providing accurate responses to medical queries. 
+SHEFAA is an **Arabic medical question-answering (QA) system** designed to provide **reliable and contextually accurate** responses to health-related queries. The system is fine-tuned using **QLoRA (Quantized Low-Rank Adapter)** on the **Jais-family-256m** model, a state-of-the-art Arabic language model optimized for understanding and generating medical text.
+
+By leveraging QLoRA, SHEFAA maintains the efficiency of large-scale language models while enabling fine-tuning on **specialized medical datasets**, ensuring domain-specific accuracy without requiring extensive computational resources.  
+
+
+
+
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/9ea5f7e2-84d7-45e6-ba7d-b8d2d63ed976" width="75%">
+  <img src="https://github.com/user-attachments/assets/9ea5f7e2-84d7-45e6-ba7d-b8d2d63ed976" width="80%">
 </p>
 
+🚀 **Powered by:** QLoRA, Jais-family-256m, Hugging Face Transformers  
+🌍 **Language:** Arabic  
+🏥 **Domain:** Healthcare & Medical AI  
 ---
 
 ## ⚙️ Prerequisites  
@@ -108,6 +116,19 @@ python score.py --model_path outputs/saved_model/
 ---
 
 ## 📊 Performance  
+All of the results were tested on 1000 sample
+
+| **Metric**       | **Baseline (10% Data)**<br>(Test, *After Cleaning*) | **Baseline (10% Data)**<br>(Valid, *After Cleaning*) | **Baseline (10% Data)**<br>(Test, *Before Cleaning*) | **Baseline (10% Data)**<br>(Valid, *Before Cleaning*) | **TF‑IDF Baseline (100% Data)**<br>(Test) |
+|------------------|-----------------------------------------------------------------|--------------------------------------------------------------------|---------------------------------|-----------------------------------|-------------------------------------------|
+| **BLEU‑1**       | 0.037                                                           | 0.033                                                              | 0.020                           | 0.017                             | 0.118                                     |
+| **BLEU‑2**       | 0.015                                                           | 0.014                                                              | 0.010                           | 0.008                             | 0.081                                     |
+| **BLEU‑4**       | 0.006                                                           | 0.006                                                              | 0.004                           | 0.003                             | 0.036                                     |
+| **ROUGE‑1 (F1)** | 0.001                                                           | 0.002                                                              | 0.000                           | 0.000                             | 0.005                                     |
+| **ROUGE‑2 (F1)** | 0.000                                                           | 0.001                                                              | 0.000                           | 0.000                             | 0.003                                     |
+| **ROUGE‑L (F1)** | 0.001                                                           | 0.002                                                              | 0.000                           | 0.000                             | 0.005                                     |
+| **BERTScore P**  | 61.40%                                                          | 60.75%                                                             | 60.93%                          | 60.42%                            | 71.08%                                    |
+| **BERTScore R**  | 61.59%                                                          | 60.66%                                                             | 65.99%                          | 65.78%                            | 70.86%                                    |
+| **BERTScore F1** | 61.33%                                                          | 60.57%                                                             | 63.18%                          | 62.83%                            | 70.78%                                    |
 
 
 
