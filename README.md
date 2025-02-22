@@ -3,7 +3,11 @@
 
 ## 🌟 Overview  
 **SHEFAA** is an Arabic medical question-answering system fine-tuned using **QLoRA** on the **Jais-family-256m** model.  
-This project aims to advance Arabic NLP in healthcare by providing accurate responses to medical queries.  
+This project aims to advance Arabic NLP in healthcare by providing accurate responses to medical queries. 
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/9ea5f7e2-84d7-45e6-ba7d-b8d2d63ed976" width="50%">
+</p>
 
 ---
 
