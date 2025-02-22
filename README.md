@@ -15,8 +15,8 @@ By leveraging QLoRA, SHEFAA maintains the efficiency of large-scale language mod
 </p>
 
 🚀 **Powered by:** QLoRA, Jais-family-256m, Hugging Face Transformers  
-🌍 **Language:** Arabic  
 🏥 **Domain:** Healthcare & Medical AI   
+🌍 **Language:** Arabic  
 
 ---
 
